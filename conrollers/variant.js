@@ -8,7 +8,7 @@ exports.postVariant = async (req, res) => {
     });
     if (duplicate) {
       return res.status(400).json({
-        message: "Category name already exists",
+        message: "Variant name already exists",
       });
     }
 

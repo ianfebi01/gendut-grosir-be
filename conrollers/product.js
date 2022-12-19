@@ -32,7 +32,7 @@ exports.updateProductVariant = async (req, res) => {
   try {
     const product = await Product.findOneAndUpdate(
       { _id: req.params.id },
-      { name: req.body.name },
+      { variant: req.body.variant },
       {
         new: true,
       }
