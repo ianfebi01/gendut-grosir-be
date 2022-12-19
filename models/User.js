@@ -14,6 +14,9 @@ const userSchema = mongoose.Schema(
     },
     profilePicture: {
       type: String,
+      trim: true,
+      default:
+        "https://res.cloudinary.com/dmhcnhtng/image/upload/v1643044376/avatars/default_pic_jeaybr.png",
     },
   },
   { timestamps: true }
