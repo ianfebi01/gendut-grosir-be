@@ -39,13 +39,16 @@ exports.loginSuccess = async (req, res) => {
   try {
     const user = await User.findOne({ facebookId: req.user.id });
     if (!user) {
-      return res.status(400).json({
-        message: "Account not found",
-      });
+      // return res.status(400).json({
+      //   message: "Account not found",
+      // });
+      return res.redirect(
+        `http://localhost:3001/login?error_message=account_not_found`
+      );
     }
     // generate token
     const token = generateToken({ id: user._id.toString() }, "30d");
-    res.redirect(`/login/callback?access_token=${token}`);
+    res.redirect(`http://localhost:3001/login?access_token=${token}`);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

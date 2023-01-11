@@ -4,8 +4,9 @@ const Product = require("../models/Product");
 exports.postProduct = async (req, res) => {
   try {
     const { name } = req.body;
+    // name: { $regex: new RegExp("^" + name.toLowerCase(), "i") },
     const duplicate = await Product.findOne({
-      name: { $regex: new RegExp("^" + name.toLowerCase(), "i") },
+      name,
     });
     if (duplicate) {
       return res.status(400).json({
@@ -14,9 +15,13 @@ exports.postProduct = async (req, res) => {
     }
 
     const product = await new Product({ ...req.body }).save();
+    console.log(product);
+    const productPopulate = await Product.findOne({
+      _id: product._id,
+    }).populate("category", "name");
     res.json({
       message: "Successfully post data",
-      data: product,
+      data: productPopulate,
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -37,7 +42,7 @@ exports.getProduct = async (req, res) => {
       page: page || 1,
       populate: { path: "category", select: "name" },
       sort: {
-        createdAt: -1,
+        createdAt: 1,
       },
       customLabels: myCustomLabels,
     };
@@ -93,7 +98,7 @@ exports.updateProduct = async (req, res) => {
       { _id: req.params.id },
       { ...req.body },
       { new: true }
-    );
+    ).populate("category", "name");
     if (product) {
       return res.json({
         message: "Successfully updated product",

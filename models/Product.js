@@ -29,13 +29,13 @@ const productSchema = new mongoose.Schema(
     },
     barcode: {
       type: Number,
-      required: true,
+      required: false,
       index: true,
     },
     image: {
       type: String,
       default:
-        "https://asset.cloudinary.com/djyp9rr7s/0b8a7198d84eca5d1ad40d8112a10e36",
+        "https://res.cloudinary.com/djyp9rr7s/image/upload/v1671439956/Pngtree_no_image_vector_illustration_isolated_4979075_ncvayj.png",
     },
     stock: {
       type: Number,
