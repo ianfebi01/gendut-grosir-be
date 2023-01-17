@@ -15,17 +15,11 @@ const orderSchema = new mongoose.Schema({
   },
   details: [
     {
-      product: {
-        type: ObjectId,
-        ref: "Product",
-        required: true,
-      },
+      type: ObjectId,
+      ref: "Product",
+      required: true,
     },
   ],
-  customerStatus: {
-    type: String,
-    enum: ["retailPrice", "wholesalerPrice"],
-  },
 });
 
 orderSchema.plugin(mongoosePaginate);

@@ -15,7 +15,7 @@ exports.postProduct = async (req, res) => {
     }
 
     const product = await new Product({ ...req.body }).save();
-    console.log(product);
+
     const productPopulate = await Product.findOne({
       _id: product._id,
     }).populate("category", "name");

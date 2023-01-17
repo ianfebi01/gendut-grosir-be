@@ -2,27 +2,21 @@ const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema;
 const mongoosePaginate = require("mongoose-paginate-v2");
 
-const userSchema = mongoose.Schema(
+const customerSchema = mongoose.Schema(
   {
     name: {
       type: String,
-      required: true,
     },
     email: {
       type: String,
-      required: true,
     },
     password: {
       type: String,
       required: true,
     },
-    role: {
-      type: String,
-      enum: ["super_admin", "admin", "customer"],
-      required: true,
-    },
     status: {
       type: String,
+      enum: ["retail", "wholesaler"],
     },
     activate: {
       type: Boolean,
@@ -37,6 +31,6 @@ const userSchema = mongoose.Schema(
   },
   { timestamps: true }
 );
-userSchema.plugin(mongoosePaginate);
+customerSchema.plugin(mongoosePaginate);
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("Customer", customerSchema);
