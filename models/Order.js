@@ -15,9 +15,19 @@ const orderSchema = new mongoose.Schema({
   },
   details: [
     {
-      type: ObjectId,
-      ref: "Product",
-      required: true,
+      product: {
+        type: ObjectId,
+        ref: "Product",
+        required: true,
+      },
+      qty: {
+        type: Number,
+        required: true,
+      },
+      price: {
+        type: Number,
+        required: true,
+      },
     },
   ],
 });
