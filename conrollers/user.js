@@ -212,6 +212,7 @@ exports.editUser = async (req, res) => {
       { _id: id },
       {
         ...req.body,
+        status: req.body.status || "retail",
       },
       { new: true }
     ).select(["name", "email", "role", "status", "activate", "profilePicture"]);
