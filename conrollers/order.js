@@ -3,6 +3,9 @@ const Order = require("../models/Order");
 const User = require("../models/User");
 const Product = require("../models/Product");
 const orderid = require("order-id")("key");
+const html_to_pdf = require("html-pdf-node");
+const { readdirSync, readFileSync, writeFileSync, readFile } = require("fs");
+const { invoice } = require("../assets/html/invoice");
 
 exports.postOrder = async (req, res) => {
   try {
@@ -66,29 +69,12 @@ exports.getOrder = async (req, res) => {
         select:
           "name status category buyPrice retailPrice wholesalerPrice stock image",
       },
-      // sort: {
-      //   createdAt: 1,
-      // },
       customLabels: myCustomLabels,
     };
 
-    // const agregate = Order.aggregate([
-    //   { $match: { "user.name": q } },
-    //   {
-    //     $lookup: {
-    //       from: "users",
-    //       localField: "user",
-    //       foreignField: "_id",
-    //       as: "user",
-    //     },
-    //   },
-    // ]);
-    // const order = await Order.aggregatePaginate(agregate, options);
     const order = await Order.paginate(
       {
-        // user: {
-        //   name: { $regex: q || "", $options: "i" },
-        // },
+        orderId: { $regex: q || "", $options: "i" },
       },
       options
     );
@@ -97,6 +83,23 @@ exports.getOrder = async (req, res) => {
       message: "Successfully get data",
       data: { ...order },
     });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.download = async (req, res) => {
+  try {
+    let options = { format: "A4" };
+    let file = { content: invoice() };
+    html_to_pdf.generatePdf(file, options).then((pdfBuffer) => {
+      console.log("PDF Buffer:-", pdfBuffer);
+
+      writeFileSync("assets/pdf/ian.pdf", pdfBuffer);
+      console.log("read: ", readFile(pdfBuffer));
+    });
+
+    res.download("assets/pdf/ian.pdf");
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

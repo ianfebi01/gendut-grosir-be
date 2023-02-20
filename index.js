@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const { readdirSync } = require("fs");
+const { readdirSync, readFileSync, writeFileSync } = require("fs");
 const session = require("express-session");
 const cors = require("cors");
 const dotenv = require("dotenv");
