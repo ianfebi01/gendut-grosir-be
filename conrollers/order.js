@@ -6,6 +6,7 @@ const orderid = require("order-id")("key");
 const html_to_pdf = require("html-pdf-node");
 const { readdirSync, readFileSync, writeFileSync, readFile } = require("fs");
 const { invoice } = require("../assets/html/invoice");
+const moment = require("moment");
 
 exports.postOrder = async (req, res) => {
   try {
@@ -20,6 +21,7 @@ exports.postOrder = async (req, res) => {
       payload.user = user.id;
     }
     const total = payload?.details.reduce((a, c) => a + c.price * c.qty, 0);
+
     const totalQty = payload?.details.reduce((a, c) => a + c.qty, 0);
     payload = {
       ...payload,
@@ -64,6 +66,9 @@ exports.getOrder = async (req, res) => {
     const options = {
       limit: limit || 25,
       page: page || 1,
+      sort: {
+        createdAt: -1,
+      },
       populate: {
         path: "user details.product",
         select:
@@ -90,16 +95,38 @@ exports.getOrder = async (req, res) => {
 
 exports.download = async (req, res) => {
   try {
-    let options = { format: "A4" };
-    let file = { content: invoice() };
-    html_to_pdf.generatePdf(file, options).then((pdfBuffer) => {
-      console.log("PDF Buffer:-", pdfBuffer);
+    const { orderId } = req.query;
 
-      writeFileSync("assets/pdf/ian.pdf", pdfBuffer);
-      console.log("read: ", readFile(pdfBuffer));
-    });
+    const myCustomLabels = {
+      totalDocs: "itemCount",
+      docs: "data",
+      meta: "paginator",
+    };
 
-    res.download("assets/pdf/ian.pdf");
+    const options = {
+      populate: {
+        path: "user details.product",
+        select:
+          "name status category buyPrice retailPrice wholesalerPrice stock image",
+      },
+      customLabels: myCustomLabels,
+    };
+
+    const order = await Order.findOne({
+      orderId: { $regex: orderId || "", $options: "i" },
+    })
+      .populate("user", "name email status role activate profilePicture")
+      .populate("details.product");
+
+    let optionsPdf = { format: "A4" };
+    let file = { content: invoice(order) };
+
+    const pdfBuffer = await html_to_pdf.generatePdf(file, optionsPdf);
+    await writeFileSync("assets/pdf/invoice.pdf", pdfBuffer);
+
+    res.download("assets/pdf/invoice.pdf");
+
+    // res.json({ order: pdfBuffer });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
