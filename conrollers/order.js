@@ -20,6 +20,9 @@ exports.postOrder = async (req, res) => {
       const user = await decode(req);
       payload.user = user.id;
     }
+    if (!payload.status) {
+      payload.status = "process";
+    }
     const total = payload?.details.reduce((a, c) => a + c.price * c.qty, 0);
 
     const totalQty = payload?.details.reduce((a, c) => a + c.qty, 0);

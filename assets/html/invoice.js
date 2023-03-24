@@ -1,4 +1,5 @@
 const moment = require("moment");
+const { formatRupiah } = require("../../helpers/formatRupiah");
 
 exports.invoice = (data) => {
   const html = `<!DOCTYPE html>
@@ -161,14 +162,12 @@ exports.invoice = (data) => {
             <th>Jumlah</th>
             <th>Total</th>
           </tr>
-  
-         
           ${data?.details.map((item) => {
             return ` <tr>
                 <td>${item?.product?.name}</td>
-                <td>${"Rp " + item?.price}</td>
+                <td>${formatRupiah(item?.price)}</td>
                 <td>${item?.qty}</td>
-                <td>${"Rp " + item?.qty * item?.price}</td>
+                <td>${formatRupiah(item?.qty * item?.price)}</td>
               </tr>`;
           })}
         </table>
@@ -184,9 +183,9 @@ exports.invoice = (data) => {
             <table>
               <tr>
                 <td>TOTAL</td>
-                <td>${
-                  "Rp " + data?.details.reduce((a, c) => a + c.price * c.qty, 0)
-                }</td>
+                <td>${formatRupiah(
+                  data?.details.reduce((a, c) => a + c.price * c.qty, 0)
+                )}</td>
               </tr>
             </table>
           </div>
