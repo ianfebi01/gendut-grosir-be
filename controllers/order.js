@@ -134,3 +134,20 @@ exports.download = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+exports.changeStatusOrder = async (req, res) => {
+  const orderId = req.params.orderId;
+
+  const order = await Order.findOneAndUpdate(
+    { orderId: orderId },
+    { status: "complete" },
+    { new: true }
+  )
+    .populate("user", "name status")
+    .populate(
+      "details.product",
+      "category buyPrice retailPrice wholesalerPrice stock image"
+    );
+
+  res.json({ message: "Sukses update data order", data: order });
+};
