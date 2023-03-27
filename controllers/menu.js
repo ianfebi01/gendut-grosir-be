@@ -1,4 +1,4 @@
-const Menu = require("../models/menu");
+const Menu = require("../models/Menu");
 
 exports.postMenu = async (req, res) => {
   try {

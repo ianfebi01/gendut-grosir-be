@@ -1,5 +1,5 @@
 const express = require("express");
-const { postOrder, getOrder, download } = require("../conrollers/order");
+const { postOrder, getOrder, download } = require("../controllers/order");
 const { authUser } = require("../middlewares/authUser");
 const { isAdmin } = require("../middlewares/isAdmin");
 

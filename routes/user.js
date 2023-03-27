@@ -9,7 +9,7 @@ const {
   deleteUser,
   getUserById,
   editUser,
-} = require("../conrollers/user");
+} = require("../controllers/user");
 const passport = require("passport");
 const User = require("../models/User");
 const { authUser } = require("../middlewares/authUser");

@@ -6,7 +6,7 @@ const {
   updateProduct,
   updateProductStockByBarcode,
   deleteProduct,
-} = require("../conrollers/product");
+} = require("../controllers/product");
 const { authUser } = require("../middlewares/authUser");
 const { isAdmin } = require("../middlewares/isAdmin");
 

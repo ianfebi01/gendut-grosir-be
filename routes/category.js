@@ -5,7 +5,7 @@ const {
   getCategory,
   deleteCategory,
   updateCategory,
-} = require("../conrollers/category");
+} = require("../controllers/category");
 const { authUser } = require("../middlewares/authUser");
 const { isAdmin } = require("../middlewares/isAdmin");
 

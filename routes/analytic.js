@@ -1,5 +1,5 @@
 const express = require("express");
-const { getAnalytic } = require("../conrollers/analytic");
+const { getAnalytic } = require("../controllers/analytic");
 const { authUser } = require("../middlewares/authUser");
 
 const router = express.Router();
