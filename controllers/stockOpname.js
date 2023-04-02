@@ -1,8 +1,10 @@
 const { decode } = require("../helpers/decode");
+
 const Product = require("../models/Product");
 const StockOpname = require("../models/StockOpname");
 const orderid = require("order-id")("key");
 
+// Post
 exports.postStockOpname = async (req, res) => {
   try {
     const opnameId = orderid.generate();
@@ -15,6 +17,9 @@ exports.postStockOpname = async (req, res) => {
     payload.user = user.id;
 
     const stockOpname = await new StockOpname({ ...payload }).save();
+    const resultData = await StockOpname.findOne({
+      _id: stockOpname._id,
+    }).populate("product.product", "name");
     if (payload.apply) {
       for (item of payload.product) {
         await Product.updateOne(item.product, {
@@ -25,12 +30,46 @@ exports.postStockOpname = async (req, res) => {
 
     res.json({
       message: "Successfully post data",
-      data: stockOpname,
+      data: resultData,
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
+exports.applyStockOpname = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const opnameData = await StockOpname.findOne({ _id: id });
+
+    if (opnameData.apply)
+      return res
+        .status(403)
+        .json({ message: "This stock opname is already applied" });
+
+    const query = await opnameData.product.map((item) => ({
+      updateOne: {
+        filter: { _id: item.product._id },
+        update: { stock: item.realQty },
+      },
+    }));
+
+    await Product.bulkWrite(query);
+
+    const stockOpname = await StockOpname.findOneAndUpdate(
+      { _id: opnameData._id },
+      { apply: true },
+      { new: true }
+    ).populate("product.product", "name");
+    res.json({ message: "Successfully update", data: stockOpname });
+    // res.json({ message: "Successfully update", data: "tes" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Get
 exports.getStockOpname = async (req, res) => {
   try {
     const { q, limit, page } = req.query;
@@ -45,8 +84,7 @@ exports.getStockOpname = async (req, res) => {
       page: page || 1,
       populate: {
         path: "product.product",
-        select:
-          "name status category buyPrice retailPrice wholesalerPrice stock image",
+        select: "name",
       },
       sort: {
         createdAt: 1,

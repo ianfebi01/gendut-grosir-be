@@ -1,0 +1,397 @@
+[{
+  "_id": {
+    "$oid": "63c57c45cdd9b753df70704b"
+  },
+  "name": "Ian Febi Sastrataruna",
+  "email": "ianfebi01@gmail.com",
+  "password": "$2b$12$AYnCVo0Ox3tUQsYg7YeTa.5cPSdQv65bXyzS80GLBtHDuVs0BSpe6",
+  "role": "super_admin",
+  "activate": true,
+  "profilePicture": "https://res.cloudinary.com/dmhcnhtng/image/upload/v1643044376/avatars/default_pic_jeaybr.png",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1673886789833"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1673886789833"
+    }
+  },
+  "__v": 0,
+  "status": "wholesaler"
+},{
+  "_id": {
+    "$oid": "63c5801cbdd5165a23d3b0ad"
+  },
+  "name": "Wertyesa",
+  "email": "wertyesa@gmail.com",
+  "password": "$2b$12$ZnTyGszA185GBz9pszLtzOJCf4vZmuOOWmKHcuIEvYIR2JW2bjpAm",
+  "role": "super_admin",
+  "status": "retail",
+  "activate": true,
+  "profilePicture": "https://res.cloudinary.com/djyp9rr7s/image/upload/v1673944202/gendut-grosir/nkzypz2phreipqeo1axj.jpg",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1673887772947"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676625526129"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63c62c8eba920fe960a311ee"
+  },
+  "name": "Gundala",
+  "email": "gujsndjsn@gmail.com",
+  "password": "$2b$12$ufDFKiPFaTpjZ4XNrNBn.Ok8Zwgp1SsGB5ywigHMJjEnTZlRV5PqW",
+  "role": "customer",
+  "status": "retail",
+  "activate": true,
+  "profilePicture": "https://res.cloudinary.com/djyp9rr7s/image/upload/v1673944225/gendut-grosir/v6qmtt4sjyq8gn4nyej6.jpg",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1673931918980"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1673944223973"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63c644cafd5d55815225c66f"
+  },
+  "name": "Sani Griezman",
+  "email": "sanibagsvdg@gmail.com",
+  "password": "$2b$12$rAhAbwsitfq402/fK/NZRe3yHWYel1KYiT6YzxAx7OM80K0tYEzrm",
+  "role": "customer",
+  "status": "wholesaler",
+  "activate": true,
+  "profilePicture": "https://res.cloudinary.com/djyp9rr7s/image/upload/v1673938123/gendut-grosir/profile-picture/zjkhsp3qpk49pk60adox.jpg",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1673938122723"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1673938122723"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63c645fc02121aabb1fa49a4"
+  },
+  "name": "Roby Cupu",
+  "email": "robycupi@gmail.com",
+  "password": "$2b$12$am1BArvUs6XKU7pKn0VsN.0yx8J.A/S3a8VRve.39SLzid9fjYZPS",
+  "role": "customer",
+  "status": "wholesaler",
+  "activate": true,
+  "profilePicture": "https://res.cloudinary.com/djyp9rr7s/image/upload/v1673938429/gendut-grosir/profile-picture/t0wyzlkl8sgffmepdev8.jpg",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1673938428329"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1673944280504"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63c647d4b026d543bb33304b"
+  },
+  "name": "Defe Deadi",
+  "email": "asdsadsd@gmail.com",
+  "password": "$2b$12$nB2rlTQAoLzHKxVEtGUEruruX0UBM8Kc2YqdF3gSBiplMGGrR54G6",
+  "role": "customer",
+  "status": "retail",
+  "activate": true,
+  "profilePicture": "https://res.cloudinary.com/djyp9rr7s/image/upload/v1673938901/gendut-grosir/profile-picture/ovlwmou3s0tavs0ivbkp.jpg",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1673938900034"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1673982481229"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63c83cdb155739dadac6613d"
+  },
+  "name": "Emile mbembe",
+  "email": "oaisjdjasnjsax@asd.com",
+  "password": "$2b$12$3Uc7NWxOvD.JCfniFAqpY.wzKx9fQBOqwlRDYX6cOXu0v26ecGJUG",
+  "role": "customer",
+  "status": "retail",
+  "activate": true,
+  "profilePicture": "https://res.cloudinary.com/djyp9rr7s/image/upload/v1674067162/gendut-grosir/profile-picture/josgsy5lqpigskt6kczw.jpg",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1674067163022"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1674067163022"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63cbae4176712ad9d12d66ff"
+  },
+  "name": "Dimas aji",
+  "email": "oisdnsndsj@gmail.com",
+  "password": "$2b$12$7.D9mihm.5jpAKlKJ.021e3.RJVHYrgKXWZMGBSzSzs53srBKsKam",
+  "role": "admin",
+  "status": "wholesaler",
+  "activate": true,
+  "profilePicture": "http://res.cloudinary.com/djyp9rr7s/image/upload/v1676098212/tf991u6xd2haduimw5sk.jpg",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1674292801776"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676098211580"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63cbaf1c76712ad9d12d6709"
+  },
+  "name": "Dimahs",
+  "email": "ianasdas@gmail.com",
+  "password": "$2b$12$MC1ARW0exSgSgiiD62U43eCfX5YAxXewVSEpjkdugpB.7DgE/dR02",
+  "role": "customer",
+  "status": "retail",
+  "activate": true,
+  "profilePicture": "http://res.cloudinary.com/djyp9rr7s/image/upload/v1676486821/gendut-grosir/c4qlindnwmvem59wfoto.jpg",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1674293020050"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676486822336"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63cbaf3776712ad9d12d670c"
+  },
+  "name": "asdwedw",
+  "email": "qwadwsd@gmail.com",
+  "password": "$2b$12$C0iB18iHhH1mVqHvMn4DGuf46a4mDUIEPxCC3iKGgBHwU3UkzORgy",
+  "role": "customer",
+  "status": "retail",
+  "activate": false,
+  "profilePicture": "https://res.cloudinary.com/dmhcnhtng/image/upload/v1643044376/avatars/default_pic_jeaybr.png",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1674293047381"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1674293047381"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63cbaf5276712ad9d12d670f"
+  },
+  "name": "asdasd",
+  "email": "skjdnasd@jsnjd.sdsd",
+  "password": "$2b$12$rFkaGw70OKwiyVP.rkMMRO/MAhfJV0nPyzPA9U0w5im5X2yEddx5e",
+  "role": "admin",
+  "status": "retail",
+  "activate": false,
+  "profilePicture": "https://res.cloudinary.com/dmhcnhtng/image/upload/v1643044376/avatars/default_pic_jeaybr.png",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1674293074775"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1674293074775"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63cbaf6a76712ad9d12d6712"
+  },
+  "name": "sdasdsad",
+  "email": "asdasfw@dssdf.sdfs",
+  "password": "$2b$12$wUnhDO3JLaew8BSR26bCoOjBvzd4q9zOkj8.elz7ZoSe8lMS634Jy",
+  "role": "customer",
+  "status": "retail",
+  "activate": false,
+  "profilePicture": "https://res.cloudinary.com/dmhcnhtng/image/upload/v1643044376/avatars/default_pic_jeaybr.png",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1674293098917"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1674293098917"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63d0bdf8db7e5842aded291f"
+  },
+  "name": "Amerikano Prasetya Sanjaya Putro",
+  "email": "ardizanki09@gmail.com",
+  "password": "$2b$12$omQ0CpJl1z60fDX6gNf9Y.PVl5MhMLEwkVAx0Y.0bEW17aYLYPuKK",
+  "role": "customer",
+  "status": "retail",
+  "activate": false,
+  "profilePicture": "https://res.cloudinary.com/dmhcnhtng/image/upload/v1643044376/avatars/default_pic_jeaybr.png",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1674624504587"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1674624504587"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63db4f683569b3b6799a111f"
+  },
+  "name": "oisenfwioedqwwq",
+  "email": "ozoozo@gmail.com",
+  "password": "$2b$12$paEgme3RCcCZQ/Lf4hWhj.1hG4YI9AKzZHmgQj7UTFpQ4nZFDS6Xu",
+  "role": "customer",
+  "status": "retail",
+  "activate": false,
+  "profilePicture": "https://res.cloudinary.com/dmhcnhtng/image/upload/v1643044376/avatars/default_pic_jeaybr.png",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1675317096392"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1675317096392"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63db50773569b3b6799a1123"
+  },
+  "name": "ozias",
+  "email": "asdsadwqq2@gmail.com",
+  "password": "$2b$12$12bcviXEsbfFVLOFcO4wDOksOLKIK27hH6Z4012Actgaa9sQa/Pjm",
+  "role": "customer",
+  "status": "wholesaler",
+  "activate": false,
+  "profilePicture": "https://res.cloudinary.com/dmhcnhtng/image/upload/v1643044376/avatars/default_pic_jeaybr.png",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1675317367790"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1675317367790"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e71582b72521c51df7f2d6"
+  },
+  "name": "asdasd",
+  "email": "ianfebi0asas1@gmail.com",
+  "password": "$2b$12$mu6HpeCng1Ap0hxGiaudLe.QgKY33YrIjjWYgOgOyeztc9eSitova",
+  "role": "admin",
+  "status": "retail",
+  "activate": true,
+  "profilePicture": "https://res.cloudinary.com/dmhcnhtng/image/upload/v1643044376/avatars/default_pic_jeaybr.png",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676088706264"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676088706264"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e72edfb72521c51df7f344"
+  },
+  "name": "ian 3asa",
+  "email": "ianfebi012@gmail.com",
+  "password": "$2b$12$0pSMJ9JhDStm7CyOBkXse.gE9x95U/HixUleTs.CMDlFPbGbSQ4IG",
+  "role": "admin",
+  "status": "retail",
+  "activate": true,
+  "profilePicture": "https://res.cloudinary.com/dmhcnhtng/image/upload/v1643044376/avatars/default_pic_jeaybr.png",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676095199216"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676095292300"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e72f04b72521c51df7f34b"
+  },
+  "name": "ianfeedass gg",
+  "email": "ianfeded@jsjsj.csdsd",
+  "password": "$2b$12$n2/MJ1UigtA0k3xDp2rnVOVgsGl.NB6mwzjWqxLrCCAsKpG7UXi86",
+  "role": "admin",
+  "status": "retail",
+  "activate": true,
+  "profilePicture": "https://res.cloudinary.com/dmhcnhtng/image/upload/v1643044376/avatars/default_pic_jeaybr.png",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676095236846"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676095279294"
+    }
+  },
+  "__v": 0
+}]

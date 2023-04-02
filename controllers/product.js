@@ -4,6 +4,7 @@ const Product = require("../models/Product");
 exports.postProduct = async (req, res) => {
   try {
     const { name } = req.body;
+    const payload = req.body;
     // name: { $regex: new RegExp("^" + name.toLowerCase(), "i") },
     const duplicate = await Product.findOne({
       name,
@@ -12,6 +13,9 @@ exports.postProduct = async (req, res) => {
       return res.status(400).json({
         message: "Product name already exists",
       });
+    }
+    if (!payload.stock) {
+      payload.stock = 0;
     }
 
     const product = await new Product({ ...req.body }).save();
@@ -74,6 +78,7 @@ exports.getProduct = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
 exports.getProductById = async (req, res) => {
   try {
     const product = await Product.findOne({ _id: req.params.id }).populate(
@@ -83,6 +88,23 @@ exports.getProductById = async (req, res) => {
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
+    res.json({
+      message: "Successfully get data",
+      data: product,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+exports.getProductByBarcode = async (req, res) => {
+  try {
+    const product = await Product.findOne({
+      barcode: req.params.barcode,
+    }).populate("category", "name");
+    if (!product) {
+      return res.status(404).json({ message: "Produk tidak ditemukan" });
+    }
+
     res.json({
       message: "Successfully get data",
       data: product,
@@ -129,7 +151,7 @@ exports.updateProductStockByBarcode = async (req, res) => {
         data: product,
       });
     } else {
-      return res.status(404).json({ message: "Data not found" });
+      return res.status(404).json({ message: "Produk tidak ditemukan" });
     }
   } catch (error) {
     res.status(500).json({ message: error.message });

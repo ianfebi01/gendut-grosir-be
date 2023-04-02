@@ -1,0 +1,467 @@
+[{
+  "_id": {
+    "$oid": "6423e9158ed4c749d66dacf4"
+  },
+  "opnameId": "7154-483402-7598",
+  "date": {
+    "$date": {
+      "$numberLong": "1680075020337"
+    }
+  },
+  "product": [
+    {
+      "product": {
+        "$oid": "63b44efcdbf968c59a803710"
+      },
+      "systemQty": 0,
+      "realQty": 0,
+      "difference": 0,
+      "_id": {
+        "$oid": "6423e9158ed4c749d66dacf5"
+      }
+    }
+  ],
+  "apply": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1680075029194"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680113168566"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64246089429a80ed3938432e"
+  },
+  "opnameId": "7154-743142-0149",
+  "date": {
+    "$date": {
+      "$numberLong": "1680105588093"
+    }
+  },
+  "product": [
+    {
+      "product": {
+        "$oid": "63b47782b189f13de3987d69"
+      },
+      "systemQty": 10,
+      "realQty": 12,
+      "difference": 2,
+      "_id": {
+        "$oid": "64246089429a80ed3938432f"
+      }
+    },
+    {
+      "product": {
+        "$oid": "63b44f6bdbf968c59a803724"
+      },
+      "systemQty": 0,
+      "realQty": 12,
+      "difference": 12,
+      "_id": {
+        "$oid": "64246089429a80ed39384330"
+      }
+    }
+  ],
+  "apply": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1680105609279"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680112628545"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64247e3c9af282505bd5e6e2"
+  },
+  "opnameId": "7154-779070-6936",
+  "date": {
+    "$date": {
+      "$numberLong": "1680113203734"
+    }
+  },
+  "product": [
+    {
+      "product": {
+        "$oid": "63b47b20b189f13de3987daa"
+      },
+      "systemQty": 1,
+      "realQty": 2,
+      "difference": 1,
+      "_id": {
+        "$oid": "64247e3c9af282505bd5e6e3"
+      }
+    }
+  ],
+  "apply": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1680113212469"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680113221849"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64247e7a9af282505bd5e702"
+  },
+  "opnameId": "7154-779086-3200",
+  "date": {
+    "$date": {
+      "$numberLong": "1680113265532"
+    }
+  },
+  "product": [
+    {
+      "product": {
+        "$oid": "63b53513f7803962a9e083c1"
+      },
+      "systemQty": 13,
+      "realQty": 12,
+      "difference": -1,
+      "_id": {
+        "$oid": "64247e7a9af282505bd5e703"
+      }
+    }
+  ],
+  "apply": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1680113274596"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680113281197"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64250e249af282505bd5e748"
+  },
+  "opnameId": "7154-734430-9141",
+  "date": {
+    "$date": {
+      "$numberLong": "1680150043448"
+    }
+  },
+  "product": [
+    {
+      "product": {
+        "$oid": "63b47b20b189f13de3987daa"
+      },
+      "systemQty": 2,
+      "realQty": 0,
+      "difference": -2,
+      "_id": {
+        "$oid": "64250e249af282505bd5e749"
+      }
+    }
+  ],
+  "apply": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1680150052364"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680150066823"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64250ed79af282505bd5e780"
+  },
+  "opnameId": "7154-734097-1876",
+  "date": {
+    "$date": {
+      "$numberLong": "1680150216763"
+    }
+  },
+  "product": [
+    {
+      "product": {
+        "$oid": "63b44f6bdbf968c59a803724"
+      },
+      "systemQty": 36,
+      "realQty": 0,
+      "difference": -36,
+      "_id": {
+        "$oid": "64250ed79af282505bd5e781"
+      }
+    }
+  ],
+  "apply": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1680150231676"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680150251877"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64250f0c9af282505bd5e7c6"
+  },
+  "opnameId": "7154-734056-6029",
+  "date": {
+    "$date": {
+      "$numberLong": "1680150277495"
+    }
+  },
+  "product": [
+    {
+      "product": {
+        "$oid": "63b44f6bdbf968c59a803724"
+      },
+      "systemQty": -1,
+      "realQty": 2,
+      "difference": 3,
+      "_id": {
+        "$oid": "64250f0c9af282505bd5e7c7"
+      }
+    }
+  ],
+  "apply": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1680150284432"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680150289719"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64250f559af282505bd5e7fc"
+  },
+  "opnameId": "7154-734938-2368",
+  "date": {
+    "$date": {
+      "$numberLong": "1680150347713"
+    }
+  },
+  "product": [
+    {
+      "product": {
+        "$oid": "63b44f6bdbf968c59a803724"
+      },
+      "systemQty": 2,
+      "realQty": 4,
+      "difference": 2,
+      "_id": {
+        "$oid": "64250f559af282505bd5e7fd"
+      }
+    }
+  ],
+  "apply": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1680150357959"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680150370256"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64250fb59af282505bd5e83c"
+  },
+  "opnameId": "7154-734639-0677",
+  "date": {
+    "$date": {
+      "$numberLong": "1680150379629"
+    }
+  },
+  "product": [
+    {
+      "product": {
+        "$oid": "63b44f6bdbf968c59a803724"
+      },
+      "systemQty": 4,
+      "realQty": 3,
+      "difference": -1,
+      "_id": {
+        "$oid": "64250fb59af282505bd5e83d"
+      }
+    }
+  ],
+  "apply": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1680150453246"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680151116755"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64251154e484b1ca944d482f"
+  },
+  "opnameId": "7154-734515-0400",
+  "date": {
+    "$date": {
+      "$numberLong": "1680150860377"
+    }
+  },
+  "product": [
+    {
+      "product": {
+        "$oid": "63b44f6bdbf968c59a803724"
+      },
+      "systemQty": 4,
+      "realQty": 4,
+      "difference": 0,
+      "_id": {
+        "$oid": "64251154e484b1ca944d4830"
+      }
+    }
+  ],
+  "apply": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1680150868218"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680151115409"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "642511e867711063e56fca8f"
+  },
+  "opnameId": "7154-737471-0883",
+  "date": {
+    "$date": {
+      "$numberLong": "1680151009162"
+    }
+  },
+  "product": [
+    {
+      "product": {
+        "$oid": "63b47782b189f13de3987d69"
+      },
+      "systemQty": 16,
+      "realQty": 16,
+      "difference": 0,
+      "_id": {
+        "$oid": "642511e867711063e56fca90"
+      }
+    }
+  ],
+  "apply": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1680151016290"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680151114187"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6425124267711063e56fcaaa"
+  },
+  "opnameId": "7154-737741-6857",
+  "date": {
+    "$date": {
+      "$numberLong": "1680151096943"
+    }
+  },
+  "product": [
+    {
+      "product": {
+        "$oid": "63b44f6bdbf968c59a803724"
+      },
+      "systemQty": 4,
+      "realQty": 4,
+      "difference": 0,
+      "_id": {
+        "$oid": "6425124267711063e56fcaab"
+      }
+    }
+  ],
+  "apply": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1680151106484"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680151112475"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6425134467711063e56fcafc"
+  },
+  "opnameId": "7154-737916-6641",
+  "date": {
+    "$date": {
+      "$numberLong": "1680151341942"
+    }
+  },
+  "product": [
+    {
+      "product": {
+        "$oid": "63b44f6bdbf968c59a803724"
+      },
+      "systemQty": 3,
+      "realQty": 2,
+      "difference": -1,
+      "_id": {
+        "$oid": "6425134467711063e56fcafd"
+      }
+    }
+  ],
+  "apply": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1680151364446"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680151949387"
+    }
+  },
+  "__v": 0
+}]

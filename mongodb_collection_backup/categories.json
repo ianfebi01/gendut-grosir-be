@@ -1,0 +1,129 @@
+[{
+  "_id": {
+    "$oid": "639dcb25851834d7005e0b9c"
+  },
+  "name": "Roti Kering",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1671285541024"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1671285541024"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "639eac4d959218cbfe1b297b"
+  },
+  "name": "Wafer Keju",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1671343181068"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672638207763"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b017a017c65a47ee1cfb60"
+  },
+  "name": "Peyek",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672484768297"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672484768297"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b024d30a2a9df53a47f549"
+  },
+  "name": "Roti Keju",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672488147581"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672638271880"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b07b2f0a2a9df53a47f5a2"
+  },
+  "name": "Bakpia",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672510255573"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672510255573"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b11f9653cbbc2df6167163"
+  },
+  "name": "Tango",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672552342079"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672552342079"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b43f5b59aaca2381476ed9"
+  },
+  "name": "Nabati",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672757083372"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672757083372"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e704c7b72521c51df7f144"
+  },
+  "name": "Keripik",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676084423274"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676084423274"
+    }
+  },
+  "__v": 0
+}]

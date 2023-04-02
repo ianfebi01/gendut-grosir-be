@@ -1,0 +1,603 @@
+[{
+  "_id": {
+    "$oid": "63b44efcdbf968c59a803710"
+  },
+  "name": "Nabati Coklat",
+  "category": {
+    "$oid": "63b43f5b59aaca2381476ed9"
+  },
+  "buyPrice": 4000,
+  "wholesalerPrice": 4500,
+  "retailPrice": 5000,
+  "barcode": {
+    "$numberLong": "6970470530793"
+  },
+  "image": "https://res.cloudinary.com/djyp9rr7s/image/upload/v1672811336/gendut-grosir/uriryzmcynwjgxabfova.jpg",
+  "stock": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672761084475"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680338001309"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b44f6bdbf968c59a803724"
+  },
+  "name": "Nabati Keju",
+  "category": {
+    "$oid": "63b43f5b59aaca2381476ed9"
+  },
+  "buyPrice": 4000,
+  "wholesalerPrice": 4500,
+  "retailPrice": 5000,
+  "barcode": null,
+  "image": "https://res.cloudinary.com/djyp9rr7s/image/upload/v1672761197/gendut-grosir/z0ayvfo7sldncvfsvfhx.jpg",
+  "stock": 2,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672761195757"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680151949165"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b47782b189f13de3987d69"
+  },
+  "name": "Peyek Pak Joko",
+  "category": {
+    "$oid": "63b017a017c65a47ee1cfb60"
+  },
+  "buyPrice": 3000,
+  "wholesalerPrice": 3200,
+  "retailPrice": 3300,
+  "barcode": null,
+  "image": "https://res.cloudinary.com/djyp9rr7s/image/upload/v1672771459/gendut-grosir/hmknjqvpihoz7kpigmte.jpg",
+  "stock": 16,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672771458101"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680151114151"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b47b20b189f13de3987daa"
+  },
+  "name": "Peyek Pak Kencis",
+  "category": {
+    "$oid": "63b017a017c65a47ee1cfb60"
+  },
+  "buyPrice": 3200,
+  "wholesalerPrice": 3400,
+  "retailPrice": 3500,
+  "barcode": null,
+  "image": "https://res.cloudinary.com/djyp9rr7s/image/upload/v1672772385/gendut-grosir/qxdvli2ti05zfgob2jqe.jpg",
+  "stock": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672772384745"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680150066751"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b53513f7803962a9e083c1"
+  },
+  "name": "Tango 163g",
+  "category": {
+    "$oid": "63b11f9653cbbc2df6167163"
+  },
+  "buyPrice": 3200,
+  "wholesalerPrice": 3500,
+  "retailPrice": 3700,
+  "barcode": null,
+  "image": "https://res.cloudinary.com/djyp9rr7s/image/upload/v1672819984/gendut-grosir/tdfdnjmspjtjsmoqy0wn.webp",
+  "stock": 12,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672819987176"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680113281088"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e70480b72521c51df7f13e"
+  },
+  "name": "Kripik Sita",
+  "category": {
+    "$oid": "63b017a017c65a47ee1cfb60"
+  },
+  "buyPrice": 2300,
+  "wholesalerPrice": 2400,
+  "retailPrice": 3000,
+  "barcode": null,
+  "image": null,
+  "stock": 22,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676084352069"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1679643877341"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e704e6b72521c51df7f14d"
+  },
+  "name": "Keripik Sukun",
+  "category": {
+    "$oid": "63e704c7b72521c51df7f144"
+  },
+  "buyPrice": 2000,
+  "wholesalerPrice": 2300,
+  "retailPrice": 2400,
+  "barcode": null,
+  "image": "http://res.cloudinary.com/djyp9rr7s/image/upload/v1676486695/gendut-grosir/uddw32xtyckyqwclkmzf.jpg",
+  "stock": 22,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676084454156"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1679643877431"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e70591b72521c51df7f172"
+  },
+  "name": "Tango Keju",
+  "category": {
+    "$oid": "639eac4d959218cbfe1b297b"
+  },
+  "buyPrice": 4300,
+  "wholesalerPrice": 4500,
+  "retailPrice": 4700,
+  "barcode": 11288355,
+  "image": "https://res.cloudinary.com/djyp9rr7s/image/upload/v1671439956/Pngtree_no_image_vector_illustration_isolated_4979075_ncvayj.png",
+  "stock": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676084625633"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676084625633"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e705a9b72521c51df7f178"
+  },
+  "name": "Tango Coklerart",
+  "category": {
+    "$oid": "639eac4d959218cbfe1b297b"
+  },
+  "buyPrice": 4300,
+  "wholesalerPrice": 4500,
+  "retailPrice": 4700,
+  "barcode": null,
+  "image": "https://res.cloudinary.com/djyp9rr7s/image/upload/v1671439956/Pngtree_no_image_vector_illustration_isolated_4979075_ncvayj.png",
+  "stock": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676084649249"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676084649249"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e705aeb72521c51df7f17e"
+  },
+  "name": "Tango Coklerart]2",
+  "category": {
+    "$oid": "639eac4d959218cbfe1b297b"
+  },
+  "buyPrice": 4300,
+  "wholesalerPrice": 4500,
+  "retailPrice": 4700,
+  "barcode": null,
+  "image": "https://res.cloudinary.com/djyp9rr7s/image/upload/v1671439956/Pngtree_no_image_vector_illustration_isolated_4979075_ncvayj.png",
+  "stock": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676084654785"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676084654785"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e705b2b72521c51df7f184"
+  },
+  "name": "Tango Coklerartd",
+  "category": {
+    "$oid": "639eac4d959218cbfe1b297b"
+  },
+  "buyPrice": 4300,
+  "wholesalerPrice": 4500,
+  "retailPrice": 4700,
+  "barcode": null,
+  "image": "https://res.cloudinary.com/djyp9rr7s/image/upload/v1671439956/Pngtree_no_image_vector_illustration_isolated_4979075_ncvayj.png",
+  "stock": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676084658377"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676084658377"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e705b5b72521c51df7f18a"
+  },
+  "name": "Tango Cokler",
+  "category": {
+    "$oid": "639eac4d959218cbfe1b297b"
+  },
+  "buyPrice": 4300,
+  "wholesalerPrice": 4500,
+  "retailPrice": 4700,
+  "barcode": null,
+  "image": "https://res.cloudinary.com/djyp9rr7s/image/upload/v1671439956/Pngtree_no_image_vector_illustration_isolated_4979075_ncvayj.png",
+  "stock": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676084661740"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676084661740"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e705b9b72521c51df7f190"
+  },
+  "name": "Tango Coklersds",
+  "category": {
+    "$oid": "639eac4d959218cbfe1b297b"
+  },
+  "buyPrice": 4300,
+  "wholesalerPrice": 4500,
+  "retailPrice": 4700,
+  "barcode": null,
+  "image": "https://res.cloudinary.com/djyp9rr7s/image/upload/v1671439956/Pngtree_no_image_vector_illustration_isolated_4979075_ncvayj.png",
+  "stock": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676084665192"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676084665192"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e705bcb72521c51df7f196"
+  },
+  "name": "Tango Coklersdssdff",
+  "category": {
+    "$oid": "639eac4d959218cbfe1b297b"
+  },
+  "buyPrice": 4300,
+  "wholesalerPrice": 4500,
+  "retailPrice": 4700,
+  "barcode": null,
+  "image": "https://res.cloudinary.com/djyp9rr7s/image/upload/v1671439956/Pngtree_no_image_vector_illustration_isolated_4979075_ncvayj.png",
+  "stock": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676084668419"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676084668419"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e705c9b72521c51df7f19c"
+  },
+  "name": "Tango alskdnaskd ",
+  "category": {
+    "$oid": "639eac4d959218cbfe1b297b"
+  },
+  "buyPrice": 4300,
+  "wholesalerPrice": 4500,
+  "retailPrice": 4700,
+  "barcode": null,
+  "image": "https://res.cloudinary.com/djyp9rr7s/image/upload/v1671439956/Pngtree_no_image_vector_illustration_isolated_4979075_ncvayj.png",
+  "stock": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676084681691"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676879366571"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e705d4b72521c51df7f1a8"
+  },
+  "name": "Tango Coklersd sdsk",
+  "category": {
+    "$oid": "639eac4d959218cbfe1b297b"
+  },
+  "buyPrice": 4300,
+  "wholesalerPrice": 4500,
+  "retailPrice": 4700,
+  "barcode": null,
+  "image": "https://res.cloudinary.com/djyp9rr7s/image/upload/v1671439956/Pngtree_no_image_vector_illustration_isolated_4979075_ncvayj.png",
+  "stock": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676084692341"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676879380676"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e705dab72521c51df7f1ae"
+  },
+  "name": "Tango Coklersd  alskdnaskk",
+  "category": {
+    "$oid": "639eac4d959218cbfe1b297b"
+  },
+  "buyPrice": 4300,
+  "wholesalerPrice": 4500,
+  "retailPrice": 4700,
+  "barcode": null,
+  "image": "https://res.cloudinary.com/djyp9rr7s/image/upload/v1671439956/Pngtree_no_image_vector_illustration_isolated_4979075_ncvayj.png",
+  "stock": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676084698329"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676084698329"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e70744b72521c51df7f1e8"
+  },
+  "name": "Tango Coklersd  alskdnask",
+  "category": {
+    "$oid": "639eac4d959218cbfe1b297b"
+  },
+  "buyPrice": 4300,
+  "wholesalerPrice": 4500,
+  "retailPrice": 4700,
+  "barcode": null,
+  "image": "https://res.cloudinary.com/djyp9rr7s/image/upload/v1671439956/Pngtree_no_image_vector_illustration_isolated_4979075_ncvayj.png",
+  "stock": 3,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676085060797"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676101998233"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e707a3b72521c51df7f205"
+  },
+  "name": "Tango Coklersd  als",
+  "category": {
+    "$oid": "639eac4d959218cbfe1b297b"
+  },
+  "buyPrice": 4300,
+  "wholesalerPrice": 4500,
+  "retailPrice": 4700,
+  "barcode": null,
+  "image": "https://res.cloudinary.com/djyp9rr7s/image/upload/v1671439956/Pngtree_no_image_vector_illustration_isolated_4979075_ncvayj.png",
+  "stock": 4,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676085155603"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676085973048"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e707a7b72521c51df7f20b"
+  },
+  "name": "Tango Coklersd  dd j",
+  "category": {
+    "$oid": "639eac4d959218cbfe1b297b"
+  },
+  "buyPrice": 4300,
+  "wholesalerPrice": 4500,
+  "retailPrice": 4700,
+  "barcode": null,
+  "image": "https://res.cloudinary.com/djyp9rr7s/image/upload/v1671439956/Pngtree_no_image_vector_illustration_isolated_4979075_ncvayj.png",
+  "stock": 4,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676085159359"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676085159359"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e707aab72521c51df7f211"
+  },
+  "name": "Tango Coklersd  dd jdd",
+  "category": {
+    "$oid": "639eac4d959218cbfe1b297b"
+  },
+  "buyPrice": 4300,
+  "wholesalerPrice": 4500,
+  "retailPrice": 4700,
+  "barcode": null,
+  "image": "https://res.cloudinary.com/djyp9rr7s/image/upload/v1671439956/Pngtree_no_image_vector_illustration_isolated_4979075_ncvayj.png",
+  "stock": 4,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676085162339"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676085162339"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e707acb72521c51df7f217"
+  },
+  "name": "Tango Coklersd  dd jdds",
+  "category": {
+    "$oid": "639eac4d959218cbfe1b297b"
+  },
+  "buyPrice": 4300,
+  "wholesalerPrice": 4500,
+  "retailPrice": 4700,
+  "barcode": null,
+  "image": "https://res.cloudinary.com/djyp9rr7s/image/upload/v1671439956/Pngtree_no_image_vector_illustration_isolated_4979075_ncvayj.png",
+  "stock": 4,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676085164879"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1676085164879"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e707b0b72521c51df7f21d"
+  },
+  "name": "Tango Coklersd  dd ",
+  "category": {
+    "$oid": "639eac4d959218cbfe1b297b"
+  },
+  "buyPrice": 4300,
+  "wholesalerPrice": 4500,
+  "retailPrice": 4700,
+  "barcode": null,
+  "image": "http://res.cloudinary.com/djyp9rr7s/image/upload/v1676099818/gendut-grosir/hbhkth8xypxad5zbarlq.jpg",
+  "stock": 3,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1676085168018"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1679960198783"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6422634cd9094f5f064760b2"
+  },
+  "name": "Orang Gila",
+  "category": {
+    "$oid": "63b07b2f0a2a9df53a47f5a2"
+  },
+  "buyPrice": 3000,
+  "wholesalerPrice": 3500,
+  "retailPrice": 4000,
+  "barcode": null,
+  "image": "http://res.cloudinary.com/djyp9rr7s/image/upload/v1679975244/gendut-grosir/tiocdivpslnctxpzvemy.jpg",
+  "stock": 20,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1679975245003"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1679975245003"
+    }
+  },
+  "__v": 0
+}]

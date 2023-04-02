@@ -1,0 +1,94 @@
+[{
+  "_id": {
+    "$oid": "63e74f0beb27c1df2e836b88"
+  },
+  "name": "Point Of Sales",
+  "url": "/",
+  "access": [
+    "super_admin",
+    "admin",
+    "customer"
+  ],
+  "children": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e74f68eb27c1df2e836b93"
+  },
+  "name": "Dashboard",
+  "url": "/dashboard",
+  "access": [
+    "super_admin"
+  ],
+  "children": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e74f82eb27c1df2e836b96"
+  },
+  "name": "Orders",
+  "url": "/orders",
+  "access": [
+    "super_admin",
+    "admin"
+  ],
+  "children": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e75009eb27c1df2e836b9e"
+  },
+  "name": "Menu Library",
+  "url": "/library",
+  "access": [
+    "super_admin",
+    "admin"
+  ],
+  "children": [
+    {
+      "name": "Category",
+      "url": "/library/category",
+      "access": [
+        "super_admin",
+        "admin"
+      ],
+      "_id": {
+        "$oid": "63e75009eb27c1df2e836b9f"
+      }
+    },
+    {
+      "name": "Product",
+      "url": "/library/product",
+      "access": [
+        "super_admin",
+        "admin"
+      ],
+      "_id": {
+        "$oid": "63e75009eb27c1df2e836ba0"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e75022eb27c1df2e836ba3"
+  },
+  "name": "Customers",
+  "url": "/customers",
+  "access": [
+    "super_admin"
+  ],
+  "children": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63e75037eb27c1df2e836ba6"
+  },
+  "name": "User Role Management",
+  "url": "/admin/role",
+  "access": [
+    "super_admin"
+  ],
+  "children": [],
+  "__v": 0
+}]
