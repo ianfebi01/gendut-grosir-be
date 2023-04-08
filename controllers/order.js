@@ -33,30 +33,26 @@ exports.postOrder = async (req, res) => {
       totalQty,
     };
 
-    const order = await new Order({ ...payload }).save();
-
-    // const query = await payload.details.map((item) => ({
-    //   updateOne: {
-    //     filter: { _id: item.product, stock: { $gte: item.qty } },
-    //     update: {
-    //       $inc: { stock: -item.qty },
-    //     },
-    //   },
-    // }));
-
-    // const update = await Product.bulkWrite(query);
     let update = [];
     for (item of payload.details) {
-      update.push(
-        await Product.findOneAndUpdate(
-          { _id: item.product, stock: { $gte: item.qty } },
-          {
-            $inc: { stock: -item.qty },
-          },
-          { new: true }
-        )
+      let tmp = await Product.findOneAndUpdate(
+        { _id: item.product, stock: { $gte: item.qty } },
+        {
+          $inc: { stock: -item.qty },
+        },
+        { new: true }
       );
+      if (tmp) {
+        update.push(tmp._id.toString());
+      }
     }
+
+    payload.details = await payload.details.filter((item) =>
+      update.includes(item.product)
+    );
+
+    // Save Order details
+    const order = await new Order({ ...payload }).save();
 
     const orderPopulate = await Order.findOne({ _id: order._id })
       .populate("user", "name email status role activate profilePicture")
@@ -65,7 +61,6 @@ exports.postOrder = async (req, res) => {
     res.json({
       message: "Successfully post data",
       data: orderPopulate,
-      update: update,
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
