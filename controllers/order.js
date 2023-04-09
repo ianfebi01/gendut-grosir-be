@@ -25,10 +25,15 @@ exports.postOrder = async (req, res) => {
     }
 
     const total = payload?.details.reduce((a, c) => a + c.price * c.qty, 0);
+    const totalBuyPrice = payload?.details.reduce(
+      (a, c) => a + c.buyPrice * c.qty,
+      0
+    );
 
     const totalQty = payload?.details.reduce((a, c) => a + c.qty, 0);
     payload = {
       ...payload,
+      totalBuyPrice,
       total,
       totalQty,
     };

@@ -29,16 +29,26 @@ exports.getAnalytic = async (req, res) => {
       {
         $project: {
           order: "$totalQty",
+          salesTurnover: "$total",
+          salesBuyPrice: "$totalBuyPrice",
           date: "$createdAt",
         },
       },
       {
         $group: {
           totalQty: { $sum: "$order" },
+          totalSalesTurnover: { $sum: "$salesTurnover" },
+          totalSalesBuyPrice: { $sum: "$salesBuyPrice" },
           _id: { $dateToString: { format: "%Y-%m-%d", date: "$date" } },
         },
       },
-
+      {
+        $addFields: {
+          totalProfit: {
+            $subtract: ["$totalSalesTurnover", "$totalSalesBuyPrice"],
+          },
+        },
+      },
       {
         $sort: {
           _id: 1,
