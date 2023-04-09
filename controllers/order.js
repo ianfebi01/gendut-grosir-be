@@ -166,3 +166,29 @@ exports.changeStatusOrder = async (req, res) => {
 
   res.json({ message: "Sukses update data order", data: order });
 };
+exports.cancelOrder = async (req, res) => {
+  const orderId = req.params.orderId;
+
+  const order = await Order.findOneAndUpdate(
+    { orderId: orderId },
+    { status: "cancel" },
+    { new: true }
+  )
+    .populate("user", "name status")
+    .populate(
+      "details.product",
+      "category buyPrice retailPrice wholesalerPrice stock image"
+    );
+
+  for (item of order.details) {
+    await Product.findOneAndUpdate(
+      { _id: item.product },
+      {
+        $inc: { stock: +item.qty },
+      },
+      { new: true }
+    );
+  }
+
+  res.json({ message: "Sukses update data order", data: order });
+};
