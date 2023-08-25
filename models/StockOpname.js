@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
-const { ObjectId } = mongoose.Schema;
-const monggoosePaginate = require("mongoose-paginate-v2");
-const aggregatePaginate = require("mongoose-aggregate-paginate-v2");
+const mongoose = require('mongoose')
+const { ObjectId } = mongoose.Schema
+const monggoosePaginate = require('mongoose-paginate-v2')
+const aggregatePaginate = require('mongoose-aggregate-paginate-v2')
 
 const stockOpnameSchema = new mongoose.Schema(
   {
@@ -12,11 +12,17 @@ const stockOpnameSchema = new mongoose.Schema(
     date: {
       type: Date,
     },
+    user: {
+      type: ObjectId,
+      ref: 'User',
+      index: true,
+      required: true,
+    },
     product: [
       {
         product: {
           type: ObjectId,
-          ref: "Product",
+          ref: 'Product',
           required: true,
         },
         systemQty: {
@@ -41,9 +47,9 @@ const stockOpnameSchema = new mongoose.Schema(
   {
     timestamps: true,
   }
-);
+)
 
-stockOpnameSchema.plugin(monggoosePaginate);
-stockOpnameSchema.plugin(aggregatePaginate);
+stockOpnameSchema.plugin(monggoosePaginate)
+stockOpnameSchema.plugin(aggregatePaginate)
 
-module.exports = mongoose.model("StockOpname", stockOpnameSchema);
+module.exports = mongoose.model('StockOpname', stockOpnameSchema)
