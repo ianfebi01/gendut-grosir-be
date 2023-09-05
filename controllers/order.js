@@ -1,12 +1,9 @@
 const { decode } = require("../helpers/decode");
 const Order = require("../models/Order");
-const User = require("../models/User");
 const Product = require("../models/Product");
 const orderid = require("order-id")("key");
-const html_to_pdf = require("html-pdf-node");
-const { readdirSync, readFileSync, writeFileSync, readFile } = require("fs");
 const { invoice } = require("../assets/html/invoice");
-const moment = require("moment");
+const { default: puppeteer } = require("puppeteer");
 
 exports.postOrder = async (req, res) => {
   try {
@@ -136,11 +133,24 @@ exports.download = async (req, res) => {
       .populate("user", "name email status role activate profilePicture")
       .populate("details.product");
 
-    let optionsPdf = { format: "A4" };
-    let file = { content: invoice(order) };
+    const browser = await puppeteer.launch({
+      headless: false,
+      args: ["--no-sandbox"],
+    });
+    const page = await browser.newPage();
+    await page.setContent(invoice(order), { waitUntil: "domcontentloaded" });
+    // To reflect CSS used for screens instead of print
+    await page.emulateMediaType("screen");
 
-    const pdfBuffer = await html_to_pdf.generatePdf(file, optionsPdf);
-    await writeFileSync("assets/pdf/invoice.pdf", pdfBuffer);
+    const pdf = await page.pdf({
+      path: "assets/pdf/invoice.pdf",
+      // margin: { top: "100px", right: "50px", bottom: "100px", left: "50px" },
+      printBackground: true,
+      format: "A4",
+    });
+
+    // Close the browser instance
+    await browser.close();
 
     res.download("assets/pdf/invoice.pdf");
 
