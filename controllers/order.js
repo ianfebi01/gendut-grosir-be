@@ -136,9 +136,6 @@ exports.download = async (req, res) => {
       .populate("user", "name email status role activate profilePicture")
       .populate("details.product");
 
-    const browser = await puppeteer.launch({
-      executablePath: "/usr/bin/chromium-browser",
-    });
     let optionsPdf = { format: "A4" };
     let file = { content: invoice(order) };
 
