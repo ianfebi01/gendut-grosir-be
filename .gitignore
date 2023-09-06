@@ -11,7 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
-assets/pdf/*
+assets/pdf/invoice.pdf
 
 # Editor directories and files
 .vscode/*
