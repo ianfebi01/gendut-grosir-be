@@ -134,8 +134,9 @@ exports.download = async (req, res) => {
       .populate("details.product");
 
     const browser = await puppeteer.launch({
-      headless: false,
-      args: ["--no-sandbox"],
+      // headless: false,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      executablePath: '/usr/bin/google-chrome-stable',
     });
     const page = await browser.newPage();
     await page.setContent(invoice(order), { waitUntil: "domcontentloaded" });
