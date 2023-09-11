@@ -160,7 +160,9 @@ exports.editUser = async (req, res) => {
         status: req.body.status || 'retail',
       },
       { new: true }
-    ).select(['name', 'email', 'role', 'status', 'activate', 'profilePicture'])
+    )
+      .select(['name', 'email', 'role', 'status', 'activate', 'profilePicture'])
+      .populate('role', 'roleName')
     if (!user) {
       return res.status(400).json({
         message: 'Profil tidak ditemukan',
@@ -187,6 +189,7 @@ exports.getAllUser = async (req, res) => {
       sort: {
         createdAt: 1,
       },
+      populate: { path: 'role', select: 'roleName' },
       customLabels: myCustomLabels,
       select: ['name', 'email', 'role', 'status', 'activate', 'profilePicture'],
     }
