@@ -71,7 +71,10 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body
-    const user = await User.findOne({ email })
+    const user = await User.findOne({ email }).populate(
+      'role',
+      'roleName allow'
+    )
     if (!user) {
       return res.status(400).json({
         message: 'Email yang Anda masukan tidak ditemukan.',
@@ -112,13 +115,17 @@ exports.getMe = async (req, res) => {
   try {
     const decoded = decode(req)
 
-    const user = await User.findOne({ _id: decoded.id })
+    const user = await User.findOne({ _id: decoded.id }).populate(
+      'role',
+      'roleName allow'
+    )
+    console.log(user)
     if (!user) {
       return res.status(400).json({
         message: 'Profil tidak ditemukan',
       })
     } else {
-      return res.json(user)
+      return res.send({ ...user, message: 'Sukses' })
     }
   } catch (error) {
     res.status(500).json({ message: error.message })
@@ -128,14 +135,9 @@ exports.getUserById = async (req, res) => {
   try {
     const { id } = req.params
 
-    const user = await User.findOne({ _id: id }).select([
-      'name',
-      'email',
-      'role',
-      'status',
-      'activate',
-      'profilePicture',
-    ])
+    const user = await User.findOne({ _id: id })
+      .select(['name', 'email', 'role', 'status', 'activate', 'profilePicture'])
+      .populate('role', 'roleName allow')
     if (!user) {
       return res.status(400).json({
         message: 'Profil tidak ditemukan',
