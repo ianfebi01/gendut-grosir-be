@@ -34,3 +34,30 @@ exports.getRole = async (req, res) => {
     res.status(500).json({ message: error.message })
   }
 }
+
+exports.updateRole = async (req, res) => {
+  try {
+    const { id } = req.params
+    const { allow } = req.body
+    const role = await Role.findOneAndUpdate(
+      {
+        _id: id,
+      },
+      {
+        allow,
+      },
+      { new: true }
+    )
+
+    if (role) {
+      return res.send({
+        message: 'Sukses update role',
+        data: role,
+      })
+    } else {
+      return res.status(404).json({ message: 'Update role gagal' })
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
