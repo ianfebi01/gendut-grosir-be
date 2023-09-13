@@ -5,6 +5,6 @@ const router = express.Router()
 
 router.get('/getRole', getRole)
 
-router.put('/updateRole', updateRole)
+router.put('/updateRole/:id', updateRole)
 
 module.exports = router

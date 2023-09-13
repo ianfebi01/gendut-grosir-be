@@ -17,7 +17,7 @@ exports.getRole = async (req, res) => {
         createdAt: 1,
       },
       customLabels: myCustomLabels,
-      select: ['roleName'],
+      select: ['roleName', 'allows', 'title'],
     }
     const role = await Role.paginate(
       {
@@ -38,13 +38,14 @@ exports.getRole = async (req, res) => {
 exports.updateRole = async (req, res) => {
   try {
     const { id } = req.params
-    const { allow } = req.body
+    const { allows } = req.body
+
     const role = await Role.findOneAndUpdate(
       {
         _id: id,
       },
       {
-        allow,
+        allows,
       },
       { new: true }
     )

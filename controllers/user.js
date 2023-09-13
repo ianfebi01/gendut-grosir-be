@@ -73,7 +73,7 @@ exports.login = async (req, res) => {
     const { email, password } = req.body
     const user = await User.findOne({ email }).populate(
       'role',
-      'roleName allow'
+      'roleName allows'
     )
     if (!user) {
       return res.status(400).json({
@@ -117,9 +117,9 @@ exports.getMe = async (req, res) => {
 
     const user = await User.findOne({ _id: decoded.id }).populate(
       'role',
-      'roleName allow'
+      'roleName allows title'
     )
-    console.log(user)
+
     if (!user) {
       return res.status(400).json({
         message: 'Profil tidak ditemukan',
@@ -137,7 +137,7 @@ exports.getUserById = async (req, res) => {
 
     const user = await User.findOne({ _id: id })
       .select(['name', 'email', 'role', 'status', 'activate', 'profilePicture'])
-      .populate('role', 'roleName allow')
+      .populate('role', 'roleName allows')
     if (!user) {
       return res.status(400).json({
         message: 'Profil tidak ditemukan',
@@ -189,7 +189,7 @@ exports.getAllUser = async (req, res) => {
       sort: {
         createdAt: 1,
       },
-      populate: { path: 'role', select: 'roleName' },
+      populate: { path: 'role', select: 'roleName title' },
       customLabels: myCustomLabels,
       select: ['name', 'email', 'role', 'status', 'activate', 'profilePicture'],
     }
