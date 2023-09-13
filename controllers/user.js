@@ -73,7 +73,7 @@ exports.login = async (req, res) => {
     const { email, password } = req.body
     const user = await User.findOne({ email }).populate(
       'role',
-      'roleName allows'
+      'roleName allows title'
     )
     if (!user) {
       return res.status(400).json({
@@ -162,7 +162,7 @@ exports.editUser = async (req, res) => {
       { new: true }
     )
       .select(['name', 'email', 'role', 'status', 'activate', 'profilePicture'])
-      .populate('role', 'roleName')
+      .populate('role', 'roleName title')
     if (!user) {
       return res.status(400).json({
         message: 'Profil tidak ditemukan',
