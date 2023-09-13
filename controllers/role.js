@@ -46,6 +46,7 @@ exports.updateRole = async (req, res) => {
       const role = await Role.findOneAndUpdate(
         {
           _id: id,
+          roleName: { $ne: 'super_admin' },
         },
         {
           allows,
