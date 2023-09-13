@@ -40,23 +40,32 @@ exports.updateRole = async (req, res) => {
     const { id } = req.params
     const { allows } = req.body
 
-    const role = await Role.findOneAndUpdate(
-      {
-        _id: id,
-      },
-      {
-        allows,
-      },
-      { new: true }
-    )
+    const isPos = allows.findIndex((item) => item === 'pos')
 
-    if (role) {
-      return res.send({
-        message: 'Sukses update role',
-        data: role,
-      })
+    if (isPos !== -1) {
+      const role = await Role.findOneAndUpdate(
+        {
+          _id: id,
+          roleName: { $ne: 'super_admin' },
+        },
+        {
+          allows,
+        },
+        { new: true }
+      )
+
+      if (role) {
+        return res.send({
+          message: 'Sukses update role',
+          data: role,
+        })
+      } else {
+        return res.status(404).json({ message: 'Update role gagal' })
+      }
     } else {
-      return res.status(404).json({ message: 'Update role gagal' })
+      return res
+        .status(404)
+        .json({ message: 'Tidak bisa menghapus Point of Sales' })
     }
   } catch (error) {
     res.status(500).json({ message: error.message })
