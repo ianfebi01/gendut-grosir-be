@@ -24,7 +24,11 @@ app.use(
 app.use(
   cors({
     credentials: true,
-    origin: ['http://localhost:3000', 'http://localhost:5173'],
+    origin: [
+      'http://localhost:3000',
+      'http://localhost:5173',
+      'https://gendut-grosir-react.ianfebi01.tech',
+    ],
   })
 )
 app.use(
