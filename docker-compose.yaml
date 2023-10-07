@@ -34,7 +34,7 @@ services:
   #   networks:
   #     - app
 networks:
-  fan-steal-be:
+  fan-steal:
     driver: bridge
 volumes:
   db:
