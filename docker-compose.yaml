@@ -1,31 +1,31 @@
 version: '3.7'
 services:
-  mongodb:
-    container_name: mongodb
-    restart: always
-    image: mongo:latest
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=ianfebi01
-      - MONGO_INITDB_ROOT_PASSWORD=huhuhaha
-    ports:
-      - 27017:27017
-    volumes:
-      - db:/data/db
-  gendut-grosir-be:
+  # mongodb:
+  #   container_name: mongodb
+  #   restart: always
+  #   image: mongo:latest
+  #   environment:
+  #     - MONGO_INITDB_ROOT_USERNAME=ianfebi01
+  #     - MONGO_INITDB_ROOT_PASSWORD=huhuhaha
+  #   ports:
+  #     - 27017:27017
+  #   volumes:
+  #     - db:/data/db
+  fan-steal-be:
     restart: always
     build: .
-    container_name: gendut-grosir-be
+    container_name: fan-steal-be
     # image: gendut-grosir-be
     ports:
-      - 8001:8000
-    links:
-      - mongodb
-    depends_on:
-      - mongodb
-    environment:
-      WAIT_HOSTS: mongodb:27017
+      - 8002:8000
+    # links:
+    #   - mongodb
+    # depends_on:
+    #   - mongodb
+    # environment:
+    #   WAIT_HOSTS: mongodb:27017
     networks:
-      - app
+      - fan-steal
   # gendut-grosir-fe:
   #   restart: always
   #   build : ./gendut-grosir
@@ -34,7 +34,7 @@ services:
   #   networks:
   #     - app
 networks:
-  app:
+  fan-steal-be:
     driver: bridge
 volumes:
   db:
