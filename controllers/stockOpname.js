@@ -84,7 +84,7 @@ exports.getStockOpname = async (req, res) => {
       limit: limit || 25,
       page: page || 1,
       populate: {
-        path: 'product.product',
+        path: 'user product.product',
         select: 'name',
       },
       sort: {
