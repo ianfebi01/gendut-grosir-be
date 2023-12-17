@@ -88,7 +88,7 @@ exports.getStockOpname = async (req, res) => {
         select: 'name',
       },
       sort: {
-        createdAt: 1,
+        createdAt: -1,
       },
       customLabels: myCustomLabels,
     }
