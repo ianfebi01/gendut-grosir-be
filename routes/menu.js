@@ -1,5 +1,5 @@
 const express = require("express");
-const { postMenu, getMenu } = require("../controllers/menu");
+const { postMenu, getMenu, postDefaultMenu } = require("../controllers/menu");
 const { authUser } = require("../middlewares/authUser");
 const { isAdmin } = require("../middlewares/isAdmin");
 
