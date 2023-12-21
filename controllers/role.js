@@ -74,7 +74,7 @@ exports.postDefaultRole = async (req, res) => {
 
     const body = req.body
     const isRole = await Role.find()
-    if(isRole)  return res.status(400).json({ message: "Role available" })
+    if(isRole?.length)  return res.status(400).json({ message: "Role available" })
     const role = await Role.insertMany(body)
 
    return res.json({
