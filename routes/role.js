@@ -1,8 +1,9 @@
 const express = require('express')
-const { getRole, updateRole } = require('../controllers/role')
+const { getRole, updateRole, postDefaultRole } = require('../controllers/role')
 
 const router = express.Router()
 
+router.post('/post-default-role', postDefaultRole)
 router.get('/getRole', getRole)
 
 router.put('/updateRole/:id', updateRole)

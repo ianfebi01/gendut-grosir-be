@@ -34,6 +34,57 @@ exports.getRole = async (req, res) => {
     res.status(500).json({ message: error.message })
   }
 }
+exports.postDefaultRole = async (req, res) => {
+  try {
+    // const body = [
+    //   {
+    //     roleName: 'super_admin',
+    //     title: 'Super Admin',
+    //     allows: [
+    //       'login',
+    //       'pos',
+    //       'orders',
+    //       'library',
+    //       'category',
+    //       'product',
+    //       'stockOpname',
+    //       'dashboard',
+    //       'customers',
+    //       'role',
+    //     ],
+    //   },
+    //   {
+    //     roleName: 'admin',
+    //     title: 'Admin',
+    //     allows: [
+    //       'pos',
+    //       'orders',
+    //       'stockOpname',
+    //       'category',
+    //       'product',
+    //       'library',
+    //     ],
+    //   },
+    //   {
+    //     roleName: 'user',
+    //     title: 'User',
+    //     allows: ['pos'],
+    //   },
+    // ]
+
+    const body = req.body
+    const isRole = await Role.find()
+    if(isRole)  return res.status(400).json({ message: "Role available" })
+    const role = await Role.insertMany(body)
+
+   return res.json({
+      message: 'Successfully get data',
+      data: role,
+    })
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
 
 exports.updateRole = async (req, res) => {
   try {

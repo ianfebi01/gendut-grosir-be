@@ -7,6 +7,7 @@ const dotenv = require('dotenv')
 const User = require('./models/User')
 const fileUpload = require('express-fileupload')
 const Role = require('./models/Role')
+const { postDefaultRole } = require('./controllers/role')
 
 dotenv.config()
 
@@ -46,9 +47,6 @@ mongoose
   .then(() => console.log('Connected to database'))
   .catch((err) => console.log('Connection error : ' + err))
 
-Role.createCollection().then(function (collection) {
-  console.log('Collection is created!')
-})
 
 // Routes
 readdirSync('./routes').map((item) => app.use('/', require('./routes/' + item)))
