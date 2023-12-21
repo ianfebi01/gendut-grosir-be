@@ -79,9 +79,9 @@ const uploadToCloudinary = async (file, path) => {
 
 exports.uploadSingleImage = async (req, res) => {
   let files = []
-  await validateImage(req, res)
-
+  
   if (req.files) {
+    await validateImage(req, res)
     files = Object.values(req?.files).flat()
   }
 
