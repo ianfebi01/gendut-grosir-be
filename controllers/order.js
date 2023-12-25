@@ -55,7 +55,7 @@ exports.postOrder = async (req, res) => {
     )
 
     // Save Order details
-    const order = await new Order({ ...payload }).save()
+    const order = await new Order({ ...payload, date: moment(new Date()).toISOString() }).save()
 
     const orderPopulate = await Order.findOne({ _id: order._id })
       .populate('user', 'name email status role activate profilePicture')

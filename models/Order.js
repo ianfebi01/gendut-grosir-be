@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema;
 const mongoosePaginate = require("mongoose-paginate-v2");
 const aggregatePaginate = require("mongoose-aggregate-paginate-v2");
-const moment = require('moment')
 
 const orderSchema = new mongoose.Schema(
   {
@@ -15,7 +14,6 @@ const orderSchema = new mongoose.Schema(
     date:{
       type: Date,
       required: true,
-      default: moment(new Date()).toISOString()
     },
     orderId: {
       type: String,
