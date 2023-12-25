@@ -32,7 +32,7 @@ exports.getAnalytic = async (req, res) => {
           order: "$totalQty",
           salesTurnover: "$total",
           salesBuyPrice: "$totalBuyPrice",
-          date: "$createdAt",
+          date: "$date",
         },
       },
       {
