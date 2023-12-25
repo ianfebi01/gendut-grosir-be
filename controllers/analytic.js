@@ -13,7 +13,7 @@ exports.getAnalytic = async (req, res) => {
           $or: [
             {
               status: { $regex: /process|complete/, $options: "i" },
-              createdAt: {
+              date: {
                 $gte: start ? new Date(start) : sd,
                 $lte: end
                   ? new Date(
