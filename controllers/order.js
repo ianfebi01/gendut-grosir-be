@@ -4,6 +4,7 @@ const Product = require('../models/Product')
 const orderid = require('order-id')('key')
 const { invoice } = require('../assets/html/invoice')
 const { default: puppeteer } = require('puppeteer')
+const moment = require('moment')
 
 exports.postOrder = async (req, res) => {
   try {
@@ -82,7 +83,7 @@ exports.getOrder = async (req, res) => {
       limit: limit || 25,
       page: page || 1,
       sort: {
-        createdAt: -1,
+        date: -1,
       },
       populate: {
         path: 'user details.product',
@@ -99,6 +100,11 @@ exports.getOrder = async (req, res) => {
       options
     )
 
+    // const tmp = order.data.map((item) => ({
+    //   ...item,
+    //   createdAt: moment(time(item.createdAt, 30)).format('DD-MM-YYYY HH:mm'),
+    //   // createdAt: moment(item.createdAt).format('YYYY-MM-DD HH:mm:ss'),
+    // }))
     res.json({
       message: 'Successfully get data',
       data: { ...order },
@@ -206,3 +212,64 @@ exports.cancelOrder = async (req, res) => {
 
   res.json({ message: 'Sukses update data order', data: order })
 }
+
+exports.updateTime = async (req, res) => {
+  try {
+    const order = await Order.find()
+
+    const minus = new Array(order.length).fill(0).map((item,i)=> random(0, 30))
+    let i = 0
+    for(item of order) {
+      try {
+        console.log(time(item.createdAt,minus[i]).toISOString())
+        console.log(i)
+        await Order.findOneAndUpdate(
+          {_id: item._id},
+          {
+            date: time(item.createdAt,minus[i]).toISOString(),
+          }
+          ,
+          { timestamps: false }
+          )
+          i++
+        
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    const order2 = await Order.find()
+
+    return res.json({minus: order2})
+  } catch (error) {
+    return error
+  }
+}
+
+const time = (time, minus) => {
+  let year = new Date(time).getFullYear()
+  let month = new Date(time).getMonth()
+  let date = new Date(time).getDate()
+  let hour = new Date(time).getHours()
+  let minute = new Date(time).getMinutes()
+  let second = new Date(time).getSeconds()
+  const milisecond = new Date(time).getMilliseconds()
+
+  // Minus
+  if (date - minus < 1) {
+    if (month - 1 < 1) {
+      year = year - 1
+    } else {
+      month = month - 1
+    }
+  } else {
+    date = date - minus
+  }
+
+  // Random time
+  hour = random(7, 19)
+  minute = random(0, 59)
+
+  return new Date(year, month, date, hour, minute, second, milisecond)
+}
+
+const random = (min, max) => Math.floor(Math.random() * (max - min)) + min
