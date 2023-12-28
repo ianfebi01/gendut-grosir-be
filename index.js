@@ -25,11 +25,7 @@ app.use(
 app.use(
   cors({
     credentials: true,
-    origin: [
-      'http://localhost:3000',
-      'http://localhost:5173',
-      'https://gendut-grosir-react.ianfebi01.tech',
-    ],
+    origin: process.env.ALLOW_CORS?.split(' '),
   })
 )
 app.use(
@@ -46,7 +42,6 @@ mongoose
   })
   .then(() => console.log('Connected to database'))
   .catch((err) => console.log('Connection error : ' + err))
-
 
 // Routes
 readdirSync('./routes').map((item) => app.use('/', require('./routes/' + item)))
