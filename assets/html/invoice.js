@@ -174,10 +174,12 @@ exports.invoice = (data) => {
         <div class="column-2" style="margin-top: 20px">
           <div class="left column">
             <span class="text-18">Pembayaran : </span>
+            <!--  
             <ul>
               <li><span class="text-14">Ian febi Sastrataruna </span></li>
               <li><span class="text-14">ianfebi01@gmail.com </span></li>
             </ul>
+            -->
           </div>
           <div class="right t-right" style="justify-content: center">
             <table>
