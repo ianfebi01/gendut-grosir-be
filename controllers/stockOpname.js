@@ -20,7 +20,7 @@ exports.postStockOpname = async (req, res) => {
     const stockOpname = await new StockOpname({ ...payload }).save()
     const resultData = await StockOpname.findOne({
       _id: stockOpname._id,
-    }).populate('product.product', 'name')
+    }).populate('product.product user', 'name')
     if (payload.apply) {
       for (item of payload.product) {
         await Product.updateOne(item.product, {
@@ -62,7 +62,7 @@ exports.applyStockOpname = async (req, res) => {
       { _id: opnameData._id },
       { apply: true },
       { new: true }
-    ).populate('product.product', 'name')
+    ).populate('product.product user', 'name')
     res.json({ message: 'Successfully update', data: stockOpname })
     // res.json({ message: "Successfully update", data: "tes" });
   } catch (error) {
