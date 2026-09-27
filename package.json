@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsx watch src/index.ts",
+    "typecheck": "tsc -p ."
   },
   "keywords": [],
   "author": "",
@@ -30,5 +31,20 @@
     "nodemon": "^2.0.20",
     "order-id": "^2.1.2",
     "passport": "^0.6.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^4.17.25",
+    "@types/express-fileupload": "^1.5.1",
+    "@types/express-session": "^1.19.0",
+    "@types/jsonwebtoken": "^8.5.9",
+    "@types/node": "^22.20.4",
+    "@types/nodemailer": "^8.0.2",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }

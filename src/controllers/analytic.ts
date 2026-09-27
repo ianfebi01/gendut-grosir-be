@@ -1,0 +1,73 @@
+import type { Request, Response } from 'express'
+import moment from 'moment'
+import { Order } from '../models/Order'
+import { errorMessage } from '../helpers/http'
+
+export const getAnalytic = async (
+  req: Request<unknown, unknown, unknown, { start?: string; end?: string }>,
+  res: Response
+) => {
+  try {
+    const { start, end } = req.query
+    const sd = new Date(moment().startOf('month').toISOString())
+    const ed = new Date(moment().endOf('month').toISOString())
+
+    const filterByDay = await Order.aggregate([
+      {
+        $match: {
+          $or: [
+            {
+              status: { $regex: /process|complete/, $options: 'i' },
+              date: {
+                $gte: start ? new Date(start) : sd,
+                $lte: end
+                  ? new Date(
+                      new Date(end).getFullYear(),
+                      new Date(end).getMonth(),
+                      new Date(end).getDate() + 1
+                    )
+                  : ed,
+              },
+            },
+          ],
+        },
+      },
+      {
+        $project: {
+          order: '$totalQty',
+          salesTurnover: '$total',
+          salesBuyPrice: '$totalBuyPrice',
+          date: '$date',
+        },
+      },
+      {
+        $group: {
+          totalQty: { $sum: '$order' },
+          totalSalesTurnover: { $sum: '$salesTurnover' },
+          totalSalesBuyPrice: { $sum: '$salesBuyPrice' },
+          _id: { $dateToString: { format: '%Y-%m-%d', date: '$date' } },
+        },
+      },
+      {
+        $addFields: {
+          totalProfit: {
+            $subtract: ['$totalSalesTurnover', '$totalSalesBuyPrice'],
+          },
+        },
+      },
+      {
+        $sort: {
+          _id: 1,
+        },
+      },
+    ])
+
+    res.json({
+      message: 'Successfully get data',
+      data: filterByDay,
+      filterBy: 'Day',
+    })
+  } catch (error) {
+    res.status(500).json({ message: errorMessage(error) })
+  }
+}
