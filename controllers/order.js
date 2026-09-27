@@ -2,8 +2,6 @@ const { decode } = require('../helpers/decode')
 const Order = require('../models/Order')
 const Product = require('../models/Product')
 const orderid = require('order-id')('key')
-const { invoice } = require('../assets/html/invoice')
-const { default: puppeteer } = require('puppeteer')
 const moment = require('moment')
 
 exports.postOrder = async (req, res) => {
@@ -109,62 +107,6 @@ exports.getOrder = async (req, res) => {
       message: 'Successfully get data',
       data: { ...order },
     })
-  } catch (error) {
-    res.status(500).json({ message: error.message })
-  }
-}
-
-exports.download = async (req, res) => {
-  try {
-    const { orderId } = req.query
-
-    const myCustomLabels = {
-      totalDocs: 'itemCount',
-      docs: 'data',
-      meta: 'paginator',
-    }
-
-    const options = {
-      populate: {
-        path: 'user details.product',
-        select:
-          'name status category buyPrice retailPrice wholesalerPrice stock image',
-      },
-      customLabels: myCustomLabels,
-    }
-
-    const order = await Order.findOne({
-      orderId: { $regex: orderId || '', $options: 'i' },
-    })
-      .populate('user', 'name email status role activate profilePicture')
-      .populate('details.product')
-
-    const browser = await puppeteer.launch({
-      // headless: false,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
-      executablePath:
-        process.env.NODE_ENV === 'production'
-          ? '/usr/bin/google-chrome-stable'
-          : null,
-    })
-    const page = await browser.newPage()
-    await page.setContent(invoice(order), { waitUntil: 'domcontentloaded' })
-    // To reflect CSS used for screens instead of print
-    await page.emulateMediaType('screen')
-
-    const pdf = await page.pdf({
-      path: 'assets/pdf/invoice.pdf',
-      // margin: { top: "100px", right: "50px", bottom: "100px", left: "50px" },
-      printBackground: true,
-      format: 'A4',
-    })
-
-    // Close the browser instance
-    await browser.close()
-
-    res.download('assets/pdf/invoice.pdf')
-
-    // res.json({ order: pdfBuffer });
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
