@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import analytic from './analytic'
 import category from './category'
+import docs from './docs'
 import menu from './menu'
 import order from './order'
 import product from './product'
@@ -13,6 +14,7 @@ import user from './user'
 export const routers: Router[] = [
   analytic,
   category,
+  docs,
   menu,
   order,
   product,

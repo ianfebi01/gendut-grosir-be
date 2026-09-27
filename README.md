@@ -73,6 +73,16 @@ Dependencies are left external to the bundle (`packages: 'external'` in
 `build.mts`), so `node_modules` must be present at runtime. Type-checking is
 separate from the build — run `npm run typecheck` (CI / before committing).
 
+## API docs
+
+The OpenAPI 3 spec lives in `src/docs/openapi.ts` and is served by the app:
+
+- http://localhost:8000/docs — Swagger UI (click **Authorize** and paste the
+  `accessToken` from `POST /login`)
+- http://localhost:8000/openapi.json — raw spec, e.g. for client generation
+
+When you add or change a route, update the spec alongside it.
+
 ## Project layout
 
 ```
