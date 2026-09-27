@@ -1,14 +1,4 @@
-# FROM node:16.19.1-alpine3.16
-
-# WORKDIR /usr/app
-
-# COPY . /usr/app
-
-# RUN npm install
-
-# CMD ["node", "index.js"]
-
-FROM node:slim
+FROM node:22-slim
 
 ENV NODE_ENV=production
 
@@ -16,7 +6,10 @@ WORKDIR /usr/app
 
 COPY . /usr/app
 
-RUN npm install
+# NODE_ENV=production would skip devDependencies, which the TypeScript build needs;
+# install them for the build, then prune.
+RUN npm install --include=dev && \
+  npm run build && \
+  npm prune --omit=dev
 
-CMD ["node", "index.js"]
-
+CMD ["node", "--enable-source-maps", "dist/index.js"]

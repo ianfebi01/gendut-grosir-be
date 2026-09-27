@@ -1,6 +1,6 @@
 # gendut-grosir-be
 
-Backend for Gendut Grosir — Express + Mongoose + MongoDB, written in TypeScript.
+Backend for Gendut Grosir — Express + Mongoose + MongoDB, written in TypeScript and bundled with esbuild.
 
 ## Prerequisites
 
@@ -61,6 +61,17 @@ The API listens on http://localhost:8000. You should see:
 listening on port 8000
 Connected to database
 ```
+
+### Production build
+
+```bash
+npm run build      # esbuild → dist/index.js (+ source map)
+npm start          # node dist/index.js
+```
+
+Dependencies are left external to the bundle (`packages: 'external'` in
+`build.mts`), so `node_modules` must be present at runtime. Type-checking is
+separate from the build — run `npm run typecheck` (CI / before committing).
 
 ## Project layout
 

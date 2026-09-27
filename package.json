@@ -2,9 +2,11 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "dev": "tsx watch src/index.ts",
+    "build": "tsx build.mts",
+    "start": "node --enable-source-maps dist/index.js",
     "typecheck": "tsc -p ."
   },
   "keywords": [],
@@ -41,6 +43,7 @@
     "@types/jsonwebtoken": "^8.5.9",
     "@types/node": "^22.20.4",
     "@types/nodemailer": "^8.0.2",
+    "esbuild": "^0.28.2",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2"
   },
