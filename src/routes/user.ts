@@ -7,6 +7,7 @@ import {
   getUserById,
   login,
   register,
+  updateMe,
 } from '../controllers/user'
 import { authUser } from '../middlewares/authUser'
 import { isAdmin } from '../middlewares/isAdmin'
@@ -14,6 +15,7 @@ import { isAdmin } from '../middlewares/isAdmin'
 const router = Router()
 
 router.get('/me', authUser, getMe)
+router.put('/me', authUser, updateMe)
 router.get('/getUserById/:id', authUser, getUserById)
 router.put('/editUser/:id', authUser, isAdmin, editUser)
 router.get('/getAllUser', authUser, isAdmin, getAllUser)

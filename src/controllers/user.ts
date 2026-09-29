@@ -5,6 +5,7 @@ import { decode } from '../helpers/decode'
 import { errorMessage, pageOptions, paginationLabels, type ListQuery } from '../helpers/http'
 import { validateEmail, validateLength } from '../helpers/validation'
 import { User, type UserDoc } from '../models/User'
+import { ImageValidationError, uploadSingleImage } from './upload'
 
 type IdParams = { id: string }
 
@@ -132,6 +133,89 @@ export const getMe = async (req: Request, res: Response) => {
     return res.send({ ...user, message: 'Sukses' })
   } catch (error) {
     res.status(500).json({ message: errorMessage(error) })
+  }
+}
+
+interface UpdateMeInput {
+  name?: string
+  email?: string
+  password?: string
+  currentPassword?: string
+  profilePicture?: string
+}
+
+/**
+ * Lets the logged-in user edit their own name, email, password and profile picture.
+ * Changing email or password requires `currentPassword`. The picture can be sent as a
+ * URL in `profilePicture` or as an uploaded file (multipart/form-data).
+ */
+export const updateMe = async (req: Request<unknown, unknown, UpdateMeInput>, res: Response) => {
+  try {
+    const decoded = decode(req)
+    const { name, email, password, currentPassword, profilePicture } = req.body ?? {}
+
+    const user = await User.findById(decoded.id)
+    if (!user) {
+      return res.status(400).json({
+        message: 'Profil tidak ditemukan',
+      })
+    }
+
+    const emailChanged = email !== undefined && email !== user.email
+    if ((emailChanged || password) && !(currentPassword && (await bcrypt.compare(currentPassword, user.password)))) {
+      return res.status(400).json({
+        message: 'Password saat ini salah, mohon coba lagi.',
+      })
+    }
+
+    if (name !== undefined) {
+      if (!validateLength(name, 3, 30)) {
+        return res.status(400).json({
+          message: 'name must between 3 and 30 characters.',
+        })
+      }
+      user.name = name
+    }
+
+    if (emailChanged) {
+      if (!validateEmail(email)) {
+        return res.status(400).json({ message: 'Invalid email address.' })
+      }
+      if (await User.exists({ email, _id: { $ne: user._id } })) {
+        return res.status(400).json({
+          message: 'This email address already exists, please try with different email address.',
+        })
+      }
+      user.email = email
+    }
+
+    if (password) {
+      if (!validateLength(password, 6, 40)) {
+        return res.status(400).json({
+          message: 'password must be atleast 6 characters.',
+        })
+      }
+      user.password = await bcrypt.hash(password, 12)
+    }
+
+    const uploadImage = await uploadSingleImage(req)
+    if (uploadImage) {
+      user.profilePicture = uploadImage
+    } else if (profilePicture) {
+      user.profilePicture = profilePicture
+    }
+
+    await user.save()
+
+    const updated = await User.findById(user._id)
+      .select(PUBLIC_FIELDS)
+      .populate('role', 'roleName allows title')
+    res.json({
+      message: 'Profil berhasil diperbarui.',
+      data: updated,
+    })
+  } catch (error) {
+    res.status(error instanceof ImageValidationError ? 400 : 500).json({ message: errorMessage(error) })
   }
 }
 

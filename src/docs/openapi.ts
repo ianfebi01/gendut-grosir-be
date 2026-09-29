@@ -162,6 +162,23 @@ export const openapi: OpenAPIV3.Document = {
           ...errors,
         },
       },
+      put: {
+        tags: ['Auth & Users'],
+        operationId: 'updateMe',
+        summary: 'Update current user profile',
+        description:
+          'Edit the logged-in user\'s name, email, password and profile picture. All fields are ' +
+          'optional. `currentPassword` is required when changing `email` or `password`. Send as ' +
+          '`multipart/form-data` to upload a new profile picture as `image`.',
+        requestBody: {
+          required: true,
+          content: {
+            'application/json': { schema: ref('UpdateMeInput') },
+            'multipart/form-data': { schema: ref('UpdateMeMultipartInput') },
+          },
+        },
+        responses: { 200: response('Updated profile', envelope(ref('UserWithRole'))), ...errors },
+      },
     },
     '/getAllUser': {
       get: {
@@ -708,6 +725,30 @@ export const openapi: OpenAPIV3.Document = {
           activate: { type: 'boolean' },
           profilePicture: { type: 'string', format: 'uri' },
         },
+      },
+      UpdateMeInput: {
+        type: 'object',
+        properties: {
+          name: { type: 'string', minLength: 3, maxLength: 30 },
+          email: { type: 'string', format: 'email' },
+          password: { type: 'string', minLength: 6, maxLength: 40, description: 'New password' },
+          currentPassword: {
+            type: 'string',
+            description: 'Required when changing `email` or `password`',
+          },
+          profilePicture: { type: 'string', format: 'uri' },
+        },
+      },
+      UpdateMeMultipartInput: {
+        allOf: [
+          ref('UpdateMeInput'),
+          {
+            type: 'object',
+            properties: {
+              image: { type: 'string', format: 'binary', description: 'JPEG/PNG/GIF/WebP, max 10 MB' },
+            },
+          },
+        ],
       },
       MenuItem: {
         type: 'object',
