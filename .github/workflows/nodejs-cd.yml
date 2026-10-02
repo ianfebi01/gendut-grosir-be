@@ -1,45 +1,94 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CD
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
   # push:
   #   branches: [ development ]
   workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Log level'     
-        required: true
-        default: 'warning'
-      tags:
-        description: 'Deploy'  
 
+concurrency:
+  group: cd-${{ github.ref }}
+  cancel-in-progress: false
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+  SERVER_DIR: app/gendut-grosir/gendut-grosir-be
+
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    permissions:
+      contents: read
+      packages: write
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      # - name: CD
-        # run: echo 'CD is Disabled (Check workflow comment for the code).'
-      - name: Deploy using ssh
-        uses: appleboy/ssh-action@master
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Image metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=sha,format=long,prefix=
+            type=raw,value=latest
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Copy compose file to server
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
           port: 22
+          source: docker-compose.yaml
+          target: ${{ env.SERVER_DIR }}
+
+      - name: Deploy using ssh
+        uses: appleboy/ssh-action@v1.2.0
+        env:
+          GHCR_USER: ${{ github.repository_owner }}
+          GHCR_TOKEN: ${{ secrets.GH_PAT }}
+          IMAGE_TAG: ${{ github.sha }}
+          SERVER_DIR: ${{ env.SERVER_DIR }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: 22
+          envs: GHCR_USER,GHCR_TOKEN,IMAGE_TAG,SERVER_DIR
           script: |
-            cd app/gendut-grosir/gendut-grosir-be
-            git checkout development
-            git pull
-            docker-compose down
-            docker system prune -f
-            docker-compose up -d --build
+            set -e
+            cd "$SERVER_DIR"
+            echo "$GHCR_TOKEN" | docker login ghcr.io -u "$GHCR_USER" --password-stdin
+            export IMAGE_TAG
+            docker compose pull app
+            docker compose up -d --remove-orphans
+            docker logout ghcr.io
+            docker image prune -f
