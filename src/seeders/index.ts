@@ -4,8 +4,9 @@
  *
  *   npm run seed
  *
- * Safe to re-run: existing roles, categories, products and users are matched by
- * name/email and left untouched, so stock and passwords changed in the app survive.
+ * Safe to re-run: roles are only seeded into an empty roles collection, and existing
+ * categories, products and users are matched by name/email and left untouched, so
+ * permissions, stock and passwords changed in the app survive.
  * Mock orders are only created when no order contains a seeded product yet.
  * The super admin login comes from SEED_ADMIN_EMAIL / SEED_ADMIN_PASSWORD.
  */
@@ -19,7 +20,8 @@ import { Order } from '../models/Order'
 import { Product } from '../models/Product'
 import { Role } from '../models/Role'
 import { User } from '../models/User'
-import { products, roles } from './data'
+import { products } from './data'
+import { seedRoles } from './roles'
 
 const ADMIN_NAME = process.env.SEED_ADMIN_NAME || 'Super Admin'
 const ADMIN_EMAIL = process.env.SEED_ADMIN_EMAIL || 'superadmin@gmail.com'
@@ -36,17 +38,6 @@ const createRandom = (seed: number) => () => {
   let t = Math.imul(seed ^ (seed >>> 15), 1 | seed)
   t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t
   return ((t ^ (t >>> 14)) >>> 0) / 4294967296
-}
-
-const seedRoles = async () => {
-  for (const role of roles) {
-    const { upsertedCount } = await Role.updateOne(
-      { roleName: role.roleName },
-      { $setOnInsert: role },
-      { upsert: true }
-    )
-    console.log(`role ${role.roleName}: ${upsertedCount ? 'created' : 'exists'}`)
-  }
 }
 
 const seedProducts = async () => {
@@ -165,7 +156,8 @@ const main = async () => {
   console.log(`seeding ${name} on ${host}`)
 
   try {
-    await seedRoles()
+    const createdRoles = await seedRoles()
+    console.log(`roles: ${createdRoles.length ? `created ${createdRoles.join(', ')}` : 'already set up, skipped'}`)
     await seedProducts()
     const admin = await seedSuperAdmin()
     await seedOrders(admin._id)

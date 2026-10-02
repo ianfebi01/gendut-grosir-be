@@ -5,9 +5,8 @@ import { decode } from '../helpers/decode'
 import { isAdminRequest } from '../helpers/auth'
 import { errorMessage, pageOptions, paginationLabels, type ListQuery } from '../helpers/http'
 import { validateEmail, validateLength } from '../helpers/validation'
-import { Role } from '../models/Role'
 import { User, type UserDoc } from '../models/User'
-import { roles } from '../seeders/data'
+import { ensureRole } from '../seeders/roles'
 import { ImageValidationError, uploadSingleImage } from './upload'
 
 type IdParams = { id: string }
@@ -22,15 +21,6 @@ interface RegisterInput {
   status?: string
   activate?: boolean
   profilePicture?: string
-}
-
-/** Finds a role by name, creating it from the seeder's definition if it is missing. */
-const ensureRole = async (roleName: string) => {
-  const definition = roles.find((role) => role.roleName === roleName)
-  await Role.updateOne({ roleName }, { $setOnInsert: definition }, { upsert: true })
-  const role = await Role.findOne({ roleName })
-  if (!role) throw new Error(`Role ${roleName} is missing`)
-  return role
 }
 
 const isDuplicateBootstrap = (error: unknown) =>
