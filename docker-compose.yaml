@@ -10,7 +10,7 @@ services:
       - mongodb
     networks:
       - proxy
-      - default
+      - backend
 
   mongodb:
     image: mongo:8.0
@@ -22,6 +22,8 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     volumes:
       - mongo_data_3:/data/db
+    networks:
+      - backend
 
 volumes:
   mongo_data_3:
@@ -29,3 +31,4 @@ volumes:
 networks:
   proxy:
     external: true
+  backend:
