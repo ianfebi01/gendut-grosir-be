@@ -7,7 +7,8 @@ services:
     ports:
       - "${PORT:-8000}:${PORT:-8000}"
     depends_on:
-      - mongodb
+      mongodb:
+        condition: service_healthy
     networks:
       - proxy
       - backend
@@ -22,6 +23,20 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     volumes:
       - mongo_data_3:/data/db
+    # Healthy once the root user from .env can log in over the network, so the app
+    # never starts against a Mongo that is still initialising (the first-boot setup
+    # instance only listens on localhost, which connecting via $(hostname) skips).
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          mongosh --quiet --host "$$(hostname)"
+          -u "$$MONGO_INITDB_ROOT_USERNAME" -p "$$MONGO_INITDB_ROOT_PASSWORD"
+          --authenticationDatabase admin --eval 'db.runCommand({ ping: 1 }).ok'
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
     networks:
       - backend
 
