@@ -1,40 +1,24 @@
-version: '3.7'
 services:
-  mongodb:
-    container_name: mongodb
-    restart: always
-    image: mongo:latest
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=ianfebi01
-      - MONGO_INITDB_ROOT_PASSWORD=huhuhaha
-    ports:
-      - 27017:27017
-    volumes:
-      - db:/data/db
-  gendut-grosir-be:
-    restart: always
+  app:
+    image: ghcr.io/ianfebi01/gendut-grosir-be:${IMAGE_TAG:-latest}
     build: .
-    container_name: gendut-grosir-be
-    # image: gendut-grosir-be
+    restart: unless-stopped
+    env_file: .env
     ports:
-      - 8001:8000
-    links:
-      - mongodb
+      - "${PORT:-8000}:${PORT:-8000}"
     depends_on:
       - mongodb
+
+  mongodb:
+    image: mongo:8.0
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
     environment:
-      WAIT_HOSTS: mongodb:27017
-    networks:
-      - app
-  # gendut-grosir-fe:
-  #   restart: always
-  #   build : ./gendut-grosir
-  #   ports:
-  #     - 3001:3001
-  #   networks:
-  #     - app
-networks:
-  app:
-    driver: bridge
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    volumes:
+      - mongo_data_3:/data/db
+
 volumes:
-  db:
+  mongo_data_3:
