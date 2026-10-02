@@ -8,6 +8,9 @@ services:
       - "${PORT:-8000}:${PORT:-8000}"
     depends_on:
       - mongodb
+    networks:
+      - proxy
+      - default
 
   mongodb:
     image: mongo:8.0
@@ -22,3 +25,7 @@ services:
 
 volumes:
   mongo_data_3:
+
+networks:
+  proxy:
+    external: true
