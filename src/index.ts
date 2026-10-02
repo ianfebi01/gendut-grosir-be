@@ -7,7 +7,7 @@ import { seedRoles } from './seeders/roles'
 mongoose.set('strictQuery', false)
 mongoose
   // Close idle pooled connections so suspended serverless instances don't leak them.
-  .connect(env.DATABASE_URL, { maxIdleTimeMS: 5000 })
+  .connect(env.DATABASE_URL, { dbName: env.DATABASE_NAME, maxIdleTimeMS: 5000 })
   .then(async () => {
     console.log('Connected to database')
     const created = await seedRoles()

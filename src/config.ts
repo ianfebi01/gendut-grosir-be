@@ -4,7 +4,10 @@ dotenv.config()
 
 export const env = {
   PORT: process.env.PORT || 8000,
-  DATABASE_URL: process.env.DATABASE_URL ?? '',
+  // MONGODB_URI is set by the Vercel MongoDB Atlas integration; DATABASE_URL is used locally/Docker.
+  DATABASE_URL: process.env.MONGODB_URI || process.env.DATABASE_URL || '',
+  // Overrides the database in the URI path (e.g. Atlas integration URIs have none).
+  DATABASE_NAME: process.env.DATABASE_NAME || undefined,
   TOKEN_SECRET: process.env.TOKEN_SECRET ?? '',
   ALLOW_CORS: process.env.ALLOW_CORS,
   NODE_ENV: process.env.NODE_ENV,

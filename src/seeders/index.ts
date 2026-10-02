@@ -148,10 +148,10 @@ const seedOrders = async (cashier: mongoose.Types.ObjectId) => {
 }
 
 const main = async () => {
-  if (!env.DATABASE_URL) throw new Error('DATABASE_URL is not set')
+  if (!env.DATABASE_URL) throw new Error('MONGODB_URI or DATABASE_URL is not set')
 
   mongoose.set('strictQuery', false)
-  await mongoose.connect(env.DATABASE_URL)
+  await mongoose.connect(env.DATABASE_URL, { dbName: env.DATABASE_NAME })
   const { host, name } = mongoose.connection
   console.log(`seeding ${name} on ${host}`)
 
