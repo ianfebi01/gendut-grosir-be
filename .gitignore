@@ -24,7 +24,7 @@ dist-ssr
 *.sw?
 .env
 
-assets/pdf/invoice.pdf
 .vercel
 
 gendut-grosir-skripsi.archive.gz
+backups/

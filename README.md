@@ -1,11 +1,11 @@
 # gendut-grosir-be
 
-Backend for Gendut Grosir — Express + Mongoose + MongoDB.
+Backend for Gendut Grosir — Express + Mongoose + MongoDB, written in TypeScript and bundled with esbuild.
 
 ## Prerequisites
 
 - [Docker](https://www.docker.com/) (for MongoDB)
-- Node.js 18+
+- Node.js 22+
 
 ## 1. Configure `.env`
 
@@ -52,9 +52,7 @@ stockopnames, menus) into the `gendut-grosir-skripsi` database.
 
 ```bash
 npm install
-node index.js
-# or, with auto-reload:
-npx nodemon index.js
+npm run dev        # tsx watch — reloads on change
 ```
 
 The API listens on http://localhost:8000. You should see:
@@ -62,6 +60,42 @@ The API listens on http://localhost:8000. You should see:
 ```
 listening on port 8000
 Connected to database
+```
+
+### Production build
+
+```bash
+npm run build      # esbuild → dist/index.js (+ source map)
+npm start          # node dist/index.js
+```
+
+Dependencies are left external to the bundle (`packages: 'external'` in
+`build.mts`), so `node_modules` must be present at runtime. Type-checking is
+separate from the build — run `npm run typecheck` (CI / before committing).
+
+## API docs
+
+The OpenAPI 3 spec lives in `src/docs/openapi.ts` and is served by the app:
+
+- http://localhost:8000/docs — Swagger UI (click **Authorize** and paste the
+  `accessToken` from `POST /login`)
+- http://localhost:8000/openapi.json — raw spec, e.g. for client generation
+
+When you add or change a route, update the spec alongside it.
+
+## Project layout
+
+```
+src/
+  index.ts          entrypoint: DB connection + listen
+  app.ts            express app + middleware
+  config.ts         env vars (loads .env)
+  routes/           express routers (mounted in routes/index.ts)
+  controllers/      request handlers
+  models/           mongoose schemas
+  middlewares/      authUser, isAdmin, imageUpload
+  helpers/          jwt, validation, pagination, etc.
+  docs/openapi.ts   OpenAPI spec
 ```
 
 ## Test account
