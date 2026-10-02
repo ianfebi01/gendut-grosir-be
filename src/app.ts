@@ -1,3 +1,4 @@
+import os from 'os'
 import express from 'express'
 import session from 'express-session'
 import cors from 'cors'
@@ -22,7 +23,8 @@ export const createApp = () => {
       origin: env.ALLOW_CORS?.split(' '),
     })
   )
-  app.use(fileUpload({ useTempFiles: true }))
+  // Serverless filesystems are read-only except the OS temp dir.
+  app.use(fileUpload({ useTempFiles: true, tempFileDir: os.tmpdir() }))
 
   routers.forEach((router) => app.use('/', router))
 

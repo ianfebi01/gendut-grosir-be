@@ -14,7 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@vercel/node": "^3.0.12",
+    "@vercel/functions": "^3.9.9",
     "bcrypt": "^5.1.0",
     "cloudinary": "^1.33.0",
     "cors": "^2.8.5",

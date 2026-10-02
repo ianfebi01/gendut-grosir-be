@@ -1,0 +1,6 @@
+.env
+dist
+tmp
+backups
+mongodb_collection_backup
+*.archive.gz
