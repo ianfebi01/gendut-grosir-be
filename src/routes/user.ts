@@ -4,6 +4,7 @@ import {
   editUser,
   getAllUser,
   getMe,
+  getSetupStatus,
   getUserById,
   login,
   register,
@@ -20,6 +21,7 @@ router.get('/getUserById/:id', authUser, getUserById)
 router.put('/editUser/:id', authUser, isAdmin, editUser)
 router.get('/getAllUser', authUser, isAdmin, getAllUser)
 router.post('/register', register)
+router.get('/setup-status', getSetupStatus)
 router.post('/login', login)
 router.delete('/deleteUser/:id', authUser, isAdmin, deleteUser)
 

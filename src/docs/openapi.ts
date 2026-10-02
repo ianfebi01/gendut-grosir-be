@@ -121,7 +121,12 @@ export const openapi: OpenAPIV3.Document = {
         tags: ['Auth & Users'],
         operationId: 'register',
         summary: 'Register a user',
-        security: publicEndpoint,
+        description:
+          'On a fresh database (no users yet, see `GET /setup-status`) the account is made an ' +
+          'activated `super_admin` so it can log in straight away. After that, `role` and ' +
+          '`activate` are only honoured when the request carries an admin token; anyone else ' +
+          'gets an inactive account with the `user` role until an admin activates it.',
+        security: [{ bearerAuth: [] }, {}],
         requestBody: body({
           type: 'object',
           required: ['name', 'email', 'password'],
@@ -138,6 +143,28 @@ export const openapi: OpenAPIV3.Document = {
         responses: {
           200: response('Registered', envelope(ref('User'))),
           400: errors[400],
+          500: errors[500],
+        },
+      },
+    },
+    '/setup-status': {
+      get: {
+        tags: ['Auth & Users'],
+        operationId: 'getSetupStatus',
+        summary: 'Whether the app still needs its first account',
+        description:
+          '`needsSetup` is true while no user exists; the next `POST /register` then creates ' +
+          'the activated super admin.',
+        security: publicEndpoint,
+        responses: {
+          200: response(
+            'Setup status',
+            envelope({
+              type: 'object',
+              required: ['needsSetup'],
+              properties: { needsSetup: { type: 'boolean' } },
+            })
+          ),
           500: errors[500],
         },
       },

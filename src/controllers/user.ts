@@ -2,9 +2,12 @@ import type { Request, Response } from 'express'
 import bcrypt from 'bcrypt'
 import { generateToken } from '../helpers/token'
 import { decode } from '../helpers/decode'
+import { isAdminRequest } from '../helpers/auth'
 import { errorMessage, pageOptions, paginationLabels, type ListQuery } from '../helpers/http'
 import { validateEmail, validateLength } from '../helpers/validation'
+import { Role } from '../models/Role'
 import { User, type UserDoc } from '../models/User'
+import { roles } from '../seeders/data'
 import { ImageValidationError, uploadSingleImage } from './upload'
 
 type IdParams = { id: string }
@@ -20,6 +23,19 @@ interface RegisterInput {
   activate?: boolean
   profilePicture?: string
 }
+
+/** Finds a role by name, creating it from the seeder's definition if it is missing. */
+const ensureRole = async (roleName: string) => {
+  const definition = roles.find((role) => role.roleName === roleName)
+  await Role.updateOne({ roleName }, { $setOnInsert: definition }, { upsert: true })
+  const role = await Role.findOne({ roleName })
+  if (!role) throw new Error(`Role ${roleName} is missing`)
+  return role
+}
+
+const isDuplicateBootstrap = (error: unknown) =>
+  (error as { code?: number; keyPattern?: object })?.code === 11000 &&
+  'isBootstrap' in ((error as { keyPattern?: object }).keyPattern ?? {})
 
 export const register = async (req: Request<unknown, unknown, RegisterInput>, res: Response) => {
   try {
@@ -45,17 +61,40 @@ export const register = async (req: Request<unknown, unknown, RegisterInput>, re
       })
     }
 
-    const cryptedPasswords = await bcrypt.hash(password, 12)
-
-    const user = await new User({
+    const account = {
       name,
       email,
-      role: role || 'customer',
       status,
-      activate: activate || false,
       profilePicture,
-      password: cryptedPasswords,
-    }).save()
+      password: await bcrypt.hash(password, 12),
+    }
+
+    // On a fresh database the first account becomes an activated super admin. The
+    // unique isBootstrap index lets only one of several simultaneous sign-ups win.
+    let user = null
+    if (!(await User.exists({}))) {
+      try {
+        user = await new User({
+          ...account,
+          role: (await ensureRole('super_admin'))._id,
+          activate: true,
+          isBootstrap: true,
+        }).save()
+      } catch (error) {
+        if (!isDuplicateBootstrap(error)) throw error
+      }
+    }
+
+    // Only admins (e.g. creating users from the admin panel) may choose the role and
+    // activation; anyone else gets an inactive account with the basic user role.
+    if (!user) {
+      const byAdmin = await isAdminRequest(req)
+      user = await new User({
+        ...account,
+        role: byAdmin && role ? role : (await ensureRole('user'))._id,
+        activate: byAdmin ? Boolean(activate) : false,
+      }).save()
+    }
 
     res.send({
       data: {
@@ -68,6 +107,18 @@ export const register = async (req: Request<unknown, unknown, RegisterInput>, re
         profilePicture: user.profilePicture,
       },
       message: 'Registrasi Sukses',
+    })
+  } catch (error) {
+    res.status(500).json({ message: errorMessage(error) })
+  }
+}
+
+/** Lets the frontend detect a fresh install and send people to registration first. */
+export const getSetupStatus = async (_req: Request, res: Response) => {
+  try {
+    res.json({
+      message: 'Successfully get data',
+      data: { needsSetup: !(await User.exists({})) },
     })
   } catch (error) {
     res.status(500).json({ message: errorMessage(error) })

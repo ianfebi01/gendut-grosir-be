@@ -35,8 +35,18 @@ const userSchema = new mongoose.Schema(
       default:
         'https://res.cloudinary.com/dmhcnhtng/image/upload/v1643044376/avatars/default_pic_jeaybr.png',
     },
+    /** Set only on the account created on a fresh database; see `register`. */
+    isBootstrap: {
+      type: Boolean,
+      select: false,
+    },
   },
   { timestamps: true }
+)
+// At most one bootstrap user, so two simultaneous first sign-ups can't both become super admin.
+userSchema.index(
+  { isBootstrap: 1 },
+  { unique: true, partialFilterExpression: { isBootstrap: true } }
 )
 userSchema.plugin(mongoosePaginate)
 
